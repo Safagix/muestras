@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IL Nipote Di Venini · Muestra SafaGix · opción 2</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#110E0C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#110E0C; --sup:#1B1613; --sup-2:#241D19; --txt:#F4ECE2; --txt-2:#B8A99A;
+  --brasa:#F0703F; --on-brasa:#110E0C; --linea:rgba(244,236,226,.13);
+  --f:"Archivo", ui-sans-serif, system-ui, sans-serif; --curva:cubic-bezier(.23,1,.32,1);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:12px}
+body{background:var(--bg);color:var(--txt);font:400 17px/1.6 var(--f);overflow-x:hidden}
+::selection{background:var(--brasa);color:var(--on-brasa)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p{text-wrap:pretty}
+:focus-visible{outline:2px solid var(--brasa);outline-offset:3px;border-radius:6px}
+.cont{width:min(1080px,100%);margin-inline:auto;padding-inline:20px}
+.ico{width:20px;height:20px;flex:none}
+.cond{font-stretch:68%;text-transform:uppercase;font-weight:700;letter-spacing:.005em;line-height:.9;text-wrap:balance}
+
+.rotulo{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt-2);text-align:center;padding:8px 20px;border-bottom:1px solid var(--linea)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:16px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none}
+.sello{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--brasa);color:var(--brasa);display:grid;place-items:center;font:700 12px/1 var(--f);letter-spacing:.04em;flex:none}
+.marca .nom{font-weight:700;font-size:17px;line-height:1.1;display:block}
+.marca .sub{display:block;font-size:13px;color:var(--txt-2)}
+.top .ir{font-weight:600;font-size:15px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;padding-inline:4px;border-bottom:1.5px solid var(--brasa)}
+
+.hero h1{font-size:clamp(60px,19vw,148px);margin-top:10px}
+.hero h1 span{color:var(--brasa)}
+.hero .baj{color:var(--txt-2);margin-top:16px;max-width:40ch;font-size:16.5px}
+.foto{position:relative;margin:24px -20px 0;overflow:hidden}
+.foto img{width:100%;aspect-ratio:4/3;object-fit:cover;max-height:72svh;transform:scale(1.02)}
+.foto .meta{position:absolute;inset:auto 0 0 0;display:flex;justify-content:space-between;align-items:end;gap:12px;padding:56px 20px 16px;background:linear-gradient(to top,rgba(17,14,12,.92),rgba(17,14,12,0));font-size:14px;line-height:1.35}
+.foto .meta b{display:block;font-size:16px}
+.estrellas{display:inline-flex;gap:2px;color:var(--brasa);margin-bottom:4px}
+.estrellas svg{width:14px;height:14px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;padding-block:22px 8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;border:1.5px solid transparent;font:700 16px/1 var(--f);text-decoration:none;cursor:pointer;transition:transform 160ms var(--curva),background-color 160ms,color 160ms}
+.btn:active{transform:scale(.97)}
+.btn-brasa{background:var(--brasa);color:var(--on-brasa)}
+.btn-brasa:hover{background:#FF8456}
+.btn-linea{border-color:var(--linea);color:var(--txt)}
+.btn-linea:hover{border-color:var(--txt)}
+
+.franja{display:grid;grid-template-columns:1fr 1fr;border-block:1px solid var(--linea);margin-top:22px}
+.franja div{padding:14px 0;font-size:14px;color:var(--txt-2)}
+.franja div+div{padding-left:16px;border-left:1px solid var(--linea)}
+.franja b{display:block;color:var(--txt);font-size:15px}
+
+section{padding-block:64px}
+.cab h2{font-size:clamp(52px,15vw,104px)}
+.cab p{color:var(--txt-2);margin-top:12px;max-width:46ch}
+
+/* Tira de fotos a sangre */
+.tira{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:26px 20px 6px;scrollbar-width:none;overscroll-behavior-x:contain}
+.tira::-webkit-scrollbar{display:none}
+.tira a{flex:0 0 78%;max-width:420px;scroll-snap-align:center;position:relative;text-decoration:none;overflow:hidden;border-radius:4px}
+.tira img{width:100%;aspect-ratio:4/5;object-fit:cover;transform:scale(1.03)}
+.tira span{position:absolute;inset:auto 0 0 0;padding:44px 14px 12px;background:linear-gradient(to top,rgba(17,14,12,.88),rgba(17,14,12,0));border-radius:0 0 4px 4px;display:flex;justify-content:space-between;align-items:end;gap:8px}
+.tira b{font-stretch:68%;text-transform:uppercase;font-size:26px;line-height:.95}
+.tira small{font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pista{font-size:13px;color:var(--txt-2);padding:8px 20px 0}
+
+/* Carta en lista */
+.carta{margin-top:34px;border-top:1px solid var(--linea)}
+.plato{padding:20px 0;border-bottom:1px solid var(--linea);display:grid;gap:8px;scroll-margin-top:16px}
+.l1{display:flex;align-items:baseline;gap:10px}
+.l1 h3{font-size:30px}
+.pts{flex:1;border-bottom:1.5px dotted rgba(244,236,226,.28);transform:translateY(-6px)}
+.precio{font-weight:600;font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.plato p{font-size:15px;color:var(--txt-2);line-height:1.5;max-width:52ch}
+.plato.elegida .l1 h3{color:var(--brasa)}
+.cant{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--linea);border-radius:999px;padding:2px;justify-self:start}
+.cant button{width:44px;height:44px;border-radius:50%;border:0;background:transparent;color:var(--txt);font:600 22px/1 var(--f);cursor:pointer}
+.cant button:hover{background:var(--sup-2)}
+.cant .mas{background:var(--brasa);color:var(--on-brasa)}
+.cant .mas:hover{background:#FF8456}
+.cant output{min-width:30px;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+.sub-cab{font-size:34px;margin-top:44px}
+.beb .l1 h3{font-size:22px}
+.nota{font-size:13px;color:var(--txt-2);margin-top:16px}
+
+/* Pedido */
+#pedido{background:var(--sup)}
+.pedir{display:grid;gap:28px;margin-top:28px}
+.ticket{display:grid;gap:8px;font-variant-numeric:tabular-nums;padding-bottom:18px;border-bottom:1px solid var(--linea)}
+.ticket .lin{display:flex;justify-content:space-between;gap:12px;font-size:15px}
+.ticket .tot{font-weight:800;font-size:22px;padding-top:6px}
+.ticket .vacio{color:var(--txt-2);font-size:15px}
+form{display:grid;gap:22px}
+fieldset{border:0;padding:0;display:grid;gap:10px;min-width:0}
+legend,.campo label{font-weight:700;font-size:15px;padding:0;margin-bottom:2px}
+.opc{display:flex;flex-wrap:wrap;gap:8px}
+.opc input{position:absolute;opacity:0;pointer-events:none}
+.opc label{min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border-radius:999px;border:1px solid var(--linea);font-weight:600;font-size:15px;cursor:pointer}
+.opc label:hover{border-color:var(--txt)}
+.opc input:checked + label{background:var(--txt);border-color:var(--txt);color:var(--bg)}
+.opc input:focus-visible + label{outline:2px solid var(--brasa);outline-offset:3px}
+.campo{display:grid;gap:6px}
+.campo[hidden]{display:none}
+.op{font-weight:400;color:var(--txt-2)}
+input:not([type=radio]){font:400 16px/1.4 var(--f);color:var(--txt);background:var(--bg);border:1px solid var(--linea);border-radius:10px;padding:12px 14px;min-height:50px;width:100%}
+input::placeholder{color:#8C7F73}
+input:focus{border-color:var(--txt)}
+input[aria-invalid=true]{border-color:var(--brasa)}
+.err{font-size:14px;color:var(--brasa);font-weight:600;min-height:1em}
+.msg{background:var(--bg);border:1px solid var(--linea);border-radius:12px;padding:16px}
+.msg small{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt-2);margin-bottom:8px}
+.msg p{white-space:pre-wrap;font-size:14.5px;line-height:1.5;font-variant-numeric:tabular-nums}
+.enviar{width:100%;margin-top:12px}
+
+.datos{display:grid}
+.datos div{display:flex;gap:14px;padding-block:18px;border-bottom:1px solid var(--linea)}
+.datos .ico{color:var(--brasa);margin-top:3px}
+.datos b{display:block}
+.datos span{color:var(--txt-2);font-size:15px}
+footer{padding-block:28px 120px;color:var(--txt-2);font-size:14px;border-top:1px solid var(--linea)}
+
+.bar{position:fixed;inset:auto 0 0 0;z-index:30;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(17,14,12,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--linea);transform:translateY(110%);transition:transform 300ms var(--curva)}
+.bar.ver{transform:none}
+.bar .btn{width:100%}
+
+@keyframes sube{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.ent{animation:sube 640ms var(--curva) both}.r2{animation-delay:110ms}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.ent{animation:none}.btn,.bar{transition:none}}
+@media (hover:none){.btn-brasa:hover{background:var(--brasa)}}
+
+@media (min-width:900px){
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end}
+  .foto{margin:0}
+  .tira{padding-inline:max(20px,calc((100vw - 1080px)/2 + 20px))}
+  .tira a{flex-basis:300px}
+  .pedir{grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .datos{grid-template-columns:repeat(3,1fr);gap:24px}
+  .bar{display:none}
+  footer{padding-bottom:40px}
+}
+</style>
+</head>
+<body>
+
+<p class="rotulo">Muestra · SafaGix · opción 2</p>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 19.5 5.3 16A8 8 0 1 1 8 18.7L4 19.5Z"/></symbol>
+  <symbol id="i-estrella" viewBox="0 0 24 24"><path fill="currentColor" d="m12 3.2 2.6 5.5 6 .7-4.4 4.1 1.1 5.9L12 16.5l-5.3 2.9 1.1-5.9L3.4 9.4l6-.7L12 3.2Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 21s7-6.1 7-11.5a7 7 0 1 0-14 0C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-reloj" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-moto" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="16" r="3"/><circle cx="18" cy="16" r="3"/><path d="M9 16h5l3-6h-4M14 6h2l1 4M6 13l3-3h3"/></g></symbol>
+</svg>
+
+<header class="cont top">
+  <a class="marca" href="#" aria-label="IL Nipote Di Venini, inicio">
+    <span class="sello" aria-hidden="true">NdV</span>
+    <span><span class="nom">IL Nipote Di Venini</span><span class="sub">Pizza napolitana</span></span>
+  </a>
+  <a class="ir" href="#pedido">Tu pedido</a>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="hero-grid cont">
+      <div>
+        <h1 class="cond ent">Recién salida <span>del horno.</span></h1>
+        <p class="baj ent r2">Pedí directo por WhatsApp: elegís tus pizzas, si te la llevamos o la retirás en la cocina, y cómo pagás. Te llega todo armado en un solo mensaje.</p>
+        <div class="cta ent r2" id="cta-portada">
+          <a class="btn btn-brasa" href="#menu">Ver la carta</a>
+          <a class="btn btn-linea" href="#pedido">Mi pedido</a>
+        </div>
+      </div>
+      <div class="foto ent r2">
+        <img src="../img/portada.jpg" alt="Pizza Diavola con salame picante, cebolla morada y albahaca" width="900" height="675" fetchpriority="high">
+        <p class="meta">
+          <span><span class="estrellas" aria-hidden="true"><svg><use href="#i-estrella"/></svg><svg><use href="#i-estrella"/></svg><svg><use href="#i-estrella"/></svg><svg><use href="#i-estrella"/></svg><svg><use href="#i-estrella"/></svg></span><b>5,0 en Google</b>44 reseñas</span>
+          <span style="text-align:right"><b>Martes a domingo</b>18:00 a 23:00</span>
+        </p>
+      </div>
+    </div>
+    <div class="cont">
+      <div class="franja">
+        <div><b>Desde Gs. 55.000</b>Pizzas medianas</div>
+        <div><b>Solo envíos y retiro</b>Lunes cerrado</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="menu" aria-labelledby="t-menu">
+    <div class="cont cab"><h2 id="t-menu" class="cond">La carta</h2><p>Pizzas medianas con tomates italianos, mozzarella fior di latte y aceite de oliva extra virgen.</p></div>
+    <div class="tira" id="tira" aria-label="Fotos de las pizzas"></div>
+    <p class="pista cont">Deslizá para ver las fotos. Tocá una para ir a esa pizza.</p>
+    <div class="cont">
+      <div class="carta" id="pizzas"></div>
+      <h3 class="cond sub-cab">Bebidas</h3>
+      <div class="carta" id="bebidas" style="margin-top:14px"></div>
+      <p class="nota">Precios de ejemplo, tomados de su menú en PedidosYa. Se ajustan antes de publicar.</p>
+    </div>
+  </section>
+
+  <section id="pedido" aria-labelledby="t-pedido">
+    <div class="cont">
+      <div class="cab"><h2 id="t-pedido" class="cond">Tu pedido</h2><p>Completá estos datos y lo mandás por WhatsApp. No se guarda nada.</p></div>
+      <div class="pedir">
+        <form id="form" novalidate>
+          <div class="ticket" id="resumen" aria-live="polite"></div>
+          <fieldset>
+            <legend>¿Cómo lo recibís?</legend>
+            <div class="opc">
+              <input type="radio" name="entrega" id="en1" value="Envío a domicilio" checked><label for="en1">Envío a domicilio</label>
+              <input type="radio" name="entrega" id="en2" value="Retiro en la cocina"><label for="en2">Retiro en la cocina</label>
+            </div>
+          </fieldset>
+          <div class="campo" id="campo-dir">
+            <label for="dir">Dirección</label>
+            <input id="dir" name="dir" autocomplete="street-address" placeholder="Calle, número y una referencia" aria-describedby="e-dir">
+            <span class="err" id="e-dir" aria-live="polite"></span>
+          </div>
+          <fieldset>
+            <legend>¿Cómo pagás?</legend>
+            <div class="opc">
+              <input type="radio" name="pago" id="pa1" value="Efectivo" checked><label for="pa1">Efectivo</label>
+              <input type="radio" name="pago" id="pa2" value="Transferencia"><label for="pa2">Transferencia</label>
+              <input type="radio" name="pago" id="pa3" value="QR o tarjeta"><label for="pa3">QR o tarjeta</label>
+            </div>
+          </fieldset>
+          <div class="campo">
+            <label for="nombre">Tu nombre</label>
+            <input id="nombre" name="nombre" autocomplete="given-name" placeholder="Ej.: Marcos">
+          </div>
+          <div class="campo">
+            <label for="nota">Algo más <span class="op">(opcional)</span></label>
+            <input id="nota" name="nota" placeholder="Ej.: la Diavola sin cebolla">
+          </div>
+        </form>
+        <div>
+          <div class="msg" role="region" aria-label="Vista previa del mensaje"><small>Así les llega tu mensaje</small><p id="msg" aria-live="polite"></p></div>
+          <span class="err" id="e-cart" aria-live="polite"></span>
+          <button class="btn btn-brasa enviar" type="submit" form="form"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>Enviar pedido por WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Datos" style="padding-top:8px">
+    <div class="cont datos">
+      <div><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><p><b>Cocina</b><span>19 de Enero · solo envíos y retiro</span></p></div>
+      <div><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg><p><b>Horario</b><span>Martes a domingo de 18:00 a 23:00 · lunes cerrado</span></p></div>
+      <div><svg class="ico" aria-hidden="true"><use href="#i-moto"/></svg><p><b>Envíos</b><span>Costo a confirmar según tu dirección</span></p></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="cont">
+  <p><b style="color:var(--txt)">IL Nipote Di Venini</b> · @veniniparaguay</p>
+  <p style="margin-top:8px">Muestra preparada por SafaGix como propuesta. Precios, zona de envío y formas de pago se confirman con el local antes de publicar.</p>
+</div></footer>
+
+<div class="bar" id="bar"><a class="btn btn-brasa" href="#menu">Ver la carta</a></div>
+
+<script>
+const WA = "595994634252";
+const wa = t => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const gs = n => "Gs. " + n.toLocaleString("es-PY");
+const pizzas = [
+  {n:"Margherita", d:"Tomates italianos, parmigiano reggiano, mozzarella fior di latte, albahaca fresca y aceite de oliva.", p:60000, img:"margherita"},
+  {n:"Diavola", d:"Tomate, mozzarella, salame picante tipo pepperoni, cebolla morada y aceite de oliva con ají.", p:65000, img:"diavola"},
+  {n:"Pesto e pomodorini", d:"Tomates italianos, mozzarella fior di latte, tomates cherry, pesto de albahaca de la casa y parmigiano.", p:65000, img:"pesto"},
+  {n:"Petto di pollo", d:"Pechuga de pollo, queso crema, albahaca, orégano, parmesano y aceite de oliva.", p:65000, img:"pollo"},
+  {n:"Mozzarella", d:"Salsa de tomates italianos y mucho queso mozzarella fior di latte.", p:55000, img:"mozzarella"}
+];
+const bebidas = [{n:"Coca-Cola 250 ml", p:6000}, {n:"Coca-Cola Zero 250 ml", p:6000}, {n:"Coca-Cola 1 L", p:12000}];
+const items = [...pizzas.map(x => ({...x, tipo:"pizza"})), ...bebidas.map(x => ({...x, tipo:"bebida"}))];
+const cant = items.map(() => 0);
+const ctrl = (i, nom) => `<div class="cant"><button type="button" class="menos" data-i="${i}" aria-label="Quitar ${nom}">−</button><output id="q${i}" aria-label="Cantidad de ${nom}">0</output><button type="button" class="mas" data-i="${i}" aria-label="Agregar ${nom}">+</button></div>`;
+const fila = (x, i, desc) => `<article class="plato${x.tipo === "bebida" ? " beb" : ""}" id="it${i}"><div class="l1"><h3 class="cond">${x.n}</h3><span class="pts" aria-hidden="true"></span><span class="precio">${gs(x.p)}</span></div>${desc ? `<p>${x.d}</p>` : ""}${ctrl(i, x.n)}</article>`;
+document.getElementById("tira").innerHTML = pizzas.map((p,i) => `<a href="#it${i}"><img src="../img/${p.img}.jpg" alt="Pizza ${p.n}" width="900" height="675" loading="lazy"><span><b>${p.n}</b><small>${gs(p.p)}</small></span></a>`).join("");
+document.getElementById("pizzas").innerHTML = pizzas.map((p,i) => fila(items[i], i, true)).join("");
+document.getElementById("bebidas").innerHTML = bebidas.map((b,k) => fila(items[pizzas.length + k], pizzas.length + k, false)).join("");
+
+const form = document.getElementById("form"), msg = document.getElementById("msg"), resumen = document.getElementById("resumen"), bar = document.getElementById("bar");
+const total = () => items.reduce((s,x,i) => s + x.p * cant[i], 0);
+const unidades = () => cant.reduce((a,b) => a + b, 0);
+function texto(){
+  const d = new FormData(form), g = k => (d.get(k) || "").trim();
+  const lineas = items.map((x,i) => cant[i] ? `• ${cant[i]} × ${x.tipo === "pizza" ? "Pizza " : ""}${x.n} (${gs(x.p * cant[i])})` : "").filter(Boolean);
+  const envio = g("entrega") === "Envío a domicilio";
+  return `Hola${g("nombre") ? ", soy " + g("nombre") : ""}. Quiero pedir:\n${lineas.length ? lineas.join("\n") : "• (elegí tus pizzas)"}\nTotal: ${gs(total())}${envio ? " + envío" : ""}\n• ${g("entrega")}${envio && g("dir") ? ": " + g("dir") : ""}\n• Pago: ${g("pago")}` + (g("nota") ? `\n• Nota: ${g("nota")}` : "") + "\n¿Me confirman el tiempo de espera?";
+}
+function pintar(){
+  items.forEach((x,i) => { document.getElementById("q"+i).value = cant[i]; document.getElementById("it"+i).classList.toggle("elegida", cant[i] > 0); });
+  const lin = items.map((x,i) => cant[i] ? `<div class="lin"><span>${cant[i]} × ${x.n}</span><span>${gs(x.p * cant[i])}</span></div>` : "").join("");
+  resumen.innerHTML = lin ? lin + `<div class="lin tot"><span>Total</span><span>${gs(total())}</span></div>` : `<p class="vacio">Todavía no elegiste ninguna pizza. Tocá <b>+</b> en la carta.</p>`;
+  document.getElementById("campo-dir").hidden = form.entrega.value !== "Envío a domicilio";
+  msg.textContent = texto();
+  const n = unidades(), a = bar.querySelector("a");
+  a.textContent = n ? `Ver mi pedido (${n}) · ${gs(total())}` : "Ver la carta";
+  a.href = n ? "#pedido" : "#menu";
+  act();
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest(".cant button"); if (!b) return;
+  const i = +b.dataset.i; cant[i] = Math.max(0, cant[i] + (b.classList.contains("mas") ? 1 : -1));
+  document.getElementById("e-cart").textContent = ""; pintar();
+});
+form.addEventListener("input", pintar);
+form.addEventListener("change", pintar);
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  if (!unidades()) { document.getElementById("e-cart").textContent = "Elegí al menos una pizza."; return; }
+  const dir = document.getElementById("dir");
+  if (form.entrega.value === "Envío a domicilio" && !dir.value.trim()) { dir.setAttribute("aria-invalid","true"); document.getElementById("e-dir").textContent = "Escribí la dirección para el envío."; dir.focus(); return; }
+  dir.removeAttribute("aria-invalid"); document.getElementById("e-dir").textContent = "";
+  window.open(wa(texto()), "_blank", "noopener");
+});
+let fuera = false, enPedido = false;
+function act(){ bar.classList.toggle("ver", (fuera || unidades() > 0) && !enPedido); }
+new IntersectionObserver(([e]) => { fuera = !e.isIntersecting && e.boundingClientRect.top < 0; act(); }).observe(document.getElementById("cta-portada"));
+new IntersectionObserver(([e]) => { enPedido = e.isIntersecting; act(); }, {threshold:.05}).observe(document.getElementById("pedido"));
+pintar();
+</script>
+</body>
+</html>
