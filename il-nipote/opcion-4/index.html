@@ -5,15 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>IL Nipote Di Venini · Muestra SafaGix · opción 4</title>
 <meta name="robots" content="noindex, nofollow, noarchive">
-<meta name="theme-color" content="#1F4D33">
+<meta name="theme-color" content="#2B5F34">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --papel:#FFFCF7; --sup:#FFFFFF; --tinta:#1D241F; --tinta-2:#5A625C; --borde:#928579;
-  --verde:#1F5C3A; --verde-h:#174A2E; --bosque:#1F4D33; --rosso:#C4321F; --rosso-h:#A62816;
-  --linea:rgba(29,36,31,.12);
+  /* Paleta medida: blanco y tinta del logo, gris de la carta, verde albahaca y rojo tomate de sus fotos, madera oscura */
+  --papel:#FFFFFF; --sup:#FFFFFF; --tinta:#030303; --tinta-2:#5B5B5B; --borde:#8A8A8A;
+  --verde:#2B5F34; --verde-h:color-mix(in oklab,#2B5F34 82%,#000); --bosque:#2B5F34; --rosso:#A71F14; --rosso-h:color-mix(in oklab,#A71F14 85%,#000);
+  --linea:rgba(3,3,3,.12);
   --t:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif; --f:"Source Sans 3", ui-sans-serif, system-ui, sans-serif;
   --curva:cubic-bezier(.23,1,.32,1); --sombra:0 1px 2px rgba(29,36,31,.06), 0 14px 32px -18px rgba(29,36,31,.38);
   color-scheme:light;
@@ -31,17 +32,16 @@ p{text-wrap:pretty}
 .ico{width:20px;height:20px;flex:none}
 
 /* Portada a pantalla completa */
-.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;color:#fff;isolation:isolate;overflow:hidden;background:#18100B}
-.hero > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 50%;z-index:-2;transform:scale(1.03)}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to bottom,rgba(24,16,11,.62) 0%,rgba(24,16,11,.3) 22%,rgba(24,16,11,.45) 38%,rgba(24,16,11,.88) 60%,rgba(24,16,11,.94) 100%)}
-.rotulo{align-self:center;margin-top:10px;font-size:12px;letter-spacing:.04em;padding:4px 12px;border-radius:999px;background:rgba(24,16,11,.55);color:rgba(255,255,255,.92)}
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;color:#fff;isolation:isolate;overflow:hidden;background:#1A130B}
+.hero > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 38%;z-index:-2}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to bottom,rgba(26,19,11,.6) 0%,rgba(26,19,11,.1) 18%,rgba(26,19,11,.42) 32%,rgba(26,19,11,.82) 50%,rgba(26,19,11,.95) 100%)}
+.rotulo{align-self:center;margin-top:10px;font-size:12px;letter-spacing:.04em;padding:4px 12px;border-radius:999px;background:rgba(26,19,11,.55);color:rgba(255,255,255,.92)}
 .top{padding-block:14px}
 .marca{display:inline-flex;flex-direction:column;text-decoration:none;min-height:44px;justify-content:center}
-.marca .nom{font:800 21px/1.05 var(--t);letter-spacing:-.02em}
-.marca .sub{font-size:14px;opacity:.9}
+.logo-img{display:block;height:64px;width:auto}
 .hero .abajo{margin-top:auto;padding-bottom:96px}
-.nota-g{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;background:rgba(24,16,11,.6);border:1px solid rgba(255,255,255,.22);padding:6px 14px;border-radius:999px}
-.nota-g svg{width:16px;height:16px;color:#F2C14E}
+.nota-g{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;background:rgba(26,19,11,.6);border:1px solid rgba(255,255,255,.22);padding:6px 14px;border-radius:999px}
+.nota-g svg{width:16px;height:16px;color:#D4A667}
 .hero h1{font-size:clamp(44px,12.5vw,84px);margin-top:14px;line-height:.98}
 .hero .baj{font-size:17px;margin-top:12px;max-width:36ch;color:rgba(255,255,255,.92)}
 .acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
@@ -67,12 +67,17 @@ section{padding-block:56px}
 .tarjeta .cuerpo{padding:18px 18px 20px;display:grid;gap:14px}
 .tarjeta h3{font-size:28px}
 .tarjeta p{color:var(--tinta-2);font-size:16px;line-height:1.5;margin-top:6px}
-.tarjeta.elegida{outline-color:var(--verde)}
+.tarjeta.con{outline-color:var(--verde)}
+.tam{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid var(--linea)}
+.tam-n{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-2);font-weight:600}
+.tam-n b{display:block;letter-spacing:0;text-transform:none;color:var(--tinta);font:800 20px/1.1 var(--t);font-variant-numeric:tabular-nums}
+.tam .agregar{width:auto;min-height:46px;padding:0 18px}
+.tam .cant{min-width:136px}
 .agregar{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 20px;border:0;border-radius:14px;background:var(--verde);color:#fff;font:700 16px/1 var(--f);cursor:pointer;transition:transform 160ms var(--curva),background-color 160ms}
 .tarjeta .agregar{width:100%}
 .agregar:hover{background:var(--verde-h)}
 .agregar:active{transform:scale(.97)}
-.cant{display:none;align-items:center;justify-content:space-between;gap:4px;background:#EEF4EF;border-radius:14px;padding:3px}
+.cant{display:none;align-items:center;justify-content:space-between;gap:4px;background:color-mix(in oklab,#2B5F34 9%,#FFFFFF);border-radius:14px;padding:3px}
 .cant button{width:44px;height:44px;border-radius:11px;border:0;background:var(--sup);color:var(--verde);cursor:pointer;display:grid;place-items:center;box-shadow:0 1px 3px rgba(29,36,31,.15)}
 .cant .mas{background:var(--verde);color:#fff}
 .cant output{min-width:30px;text-align:center;font:700 19px/1 var(--f);font-variant-numeric:tabular-nums;color:var(--verde)}
@@ -164,30 +169,30 @@ footer{padding-block:24px 120px;color:var(--tinta-2);font-size:15px}
 </svg>
 
 <header class="hero">
-  <img src="../img/portada.jpg" alt="Pizza Diavola con salame picante, cebolla morada y albahaca" width="900" height="675" fetchpriority="high">
+  <img src="../img-marca/margherita.webp" alt="Pizza Margherita con albahaca fresca sobre una tabla de madera" width="1146" height="1600" fetchpriority="high">
   <p class="rotulo">Muestra · SafaGix · opción 4</p>
   <div class="cont top">
-    <a class="marca" href="#" aria-label="IL Nipote Di Venini, inicio"><span class="nom">IL Nipote Di Venini</span><span class="sub">Pizza napolitana · @veniniparaguay</span></a>
+    <a class="marca" href="#" aria-label="IL Nipote Di Venini, inicio"><img class="logo-img" src="../img-marca/logo-blanco.png" alt="" width="461" height="189"></a>
   </div>
   <div class="cont abajo">
     <span class="nota-g ent"><svg aria-hidden="true"><use href="#i-estrella"/></svg>5,0 en Google · 44 reseñas</span>
     <h1 class="ent r2">Pizza napolitana, recién salida del horno.</h1>
-    <p class="baj ent r2">Pedí directo por WhatsApp: elegís tus pizzas, si te la llevamos o la retirás en la cocina, y cómo pagás.</p>
+    <p class="baj ent r2">100 % artesanal, con receta de familia italiana. Pedí directo por WhatsApp: elegís tus pizzas, si te la llevamos o la retirás, y cómo pagás.</p>
     <div class="acciones ent r3" id="cta-portada">
       <a class="btn btn-rosso" href="#menu">Ver la carta</a>
       <a class="btn btn-blanco" href="#pedido">Mi pedido</a>
     </div>
-    <p class="horario ent r3"><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg>Martes a domingo de 18:00 a 23:00 · lunes cerrado</p>
+    <p class="horario ent r3"><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg>Jueves a domingo de 18:00 a 23:30 · lunes a miércoles cerrado</p>
   </div>
 </header>
 
 <main>
   <section id="menu" aria-labelledby="t-menu">
     <div class="cont">
-      <div class="cab"><h2 id="t-menu">La carta</h2><p>Pizzas medianas con tomates italianos, mozzarella fior di latte y aceite de oliva extra virgen.</p></div>
+      <div class="cab"><h2 id="t-menu">La carta</h2><p>Pizza 100 % artesanal con receta de familia italiana. Cada una en mediana o personal.</p></div>
       <div class="menu" id="pizzas"></div>
       <div class="menu" style="margin-top:22px"><div class="bebidas"><h3>Bebidas</h3><div id="bebidas"></div></div></div>
-      <p class="nota-precios">Precios de ejemplo, tomados de su menú en PedidosYa. Se ajustan antes de publicar.</p>
+      <p class="nota-precios">Precios de su carta. Se confirman con el local antes de publicar.</p>
     </div>
   </section>
 
@@ -221,9 +226,9 @@ footer{padding-block:24px 120px;color:var(--tinta-2);font-size:15px}
           </fieldset>
         </div>
         <div class="paso">
-          <h3><span aria-hidden="true">4</span>Tus datos y envío</h3>
+          <h3><span aria-hidden="true">4</span>Tus datos</h3>
           <div class="campo"><label for="nombre">Tu nombre</label><input id="nombre" name="nombre" autocomplete="given-name" placeholder="Ej.: Marcos"></div>
-          <div class="campo"><label for="nota">Algo más <span class="op">(opcional)</span></label><input id="nota" name="nota" placeholder="Ej.: la Diavola sin cebolla"></div>
+          <div class="campo"><label for="nota">Algo más <span class="op">(opcional)</span></label><input id="nota" name="nota" placeholder="Ej.: la Diavola sin jalapeño"></div>
           <span class="err" id="e-cart" aria-live="polite"></span>
           <button class="btn btn-rosso enviar" type="submit"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>Enviar pedido por WhatsApp</button>
           <details><summary>Ver el mensaje que les llega</summary><p class="burbuja" id="msg"></p></details>
@@ -234,15 +239,16 @@ footer{padding-block:24px 120px;color:var(--tinta-2);font-size:15px}
 
   <section aria-label="Datos" style="padding-bottom:0">
     <div class="cont datos">
-      <div><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg><p><b>Horario</b><span>Martes a domingo de 18:00 a 23:00 · lunes cerrado</span></p></div>
+      <div><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg><p><b>Horario</b><span>Jueves a domingo de 18:00 a 23:30 · lunes a miércoles cerrado</span></p></div>
       <div><svg class="ico" aria-hidden="true"><use href="#i-moto"/></svg><p><b>Envíos</b><span>Costo a confirmar</span></p></div>
-      <div><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><p><b>Cocina</b><span>19 de Enero · solo envíos y retiro</span></p></div>
+      <div><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><p><b>Cocina</b><span>19 de Enero, Lambaré · solo envíos y retiro</span></p></div>
     </div>
   </section>
 </main>
 
 <footer><div class="cont">
-  <p><b style="color:var(--tinta)">IL Nipote Di Venini</b> · @veniniparaguay</p>
+  <img src="../img-marca/logo-negro.png" alt="IL Nipote Di Venini, pizza napoletana" width="461" height="189" style="height:48px;width:auto">
+  <p style="margin-top:10px">«Pizza 100 % artesanal con receta de familia italiana» · @veniniparaguay</p>
   <p style="margin-top:8px">Muestra preparada por SafaGix como propuesta. Precios, zona de envío y formas de pago se confirman con el local antes de publicar.</p>
 </div></footer>
 
@@ -252,34 +258,43 @@ footer{padding-block:24px 120px;color:var(--tinta-2);font-size:15px}
 const WA = "595994634252";
 const wa = t => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
 const gs = n => "Gs. " + n.toLocaleString("es-PY");
+// Carta del local (01_carta.jpg): cada pizza en mediana y personal.
 const pizzas = [
-  {n:"Margherita", d:"Tomates italianos, parmigiano reggiano, mozzarella fior di latte, albahaca fresca y aceite de oliva.", p:60000, img:"margherita"},
-  {n:"Diavola", d:"Tomate, mozzarella, salame picante tipo pepperoni, cebolla morada y aceite de oliva con ají.", p:65000, img:"diavola"},
-  {n:"Pesto e pomodorini", d:"Tomates italianos, mozzarella fior di latte, tomates cherry, pesto de albahaca de la casa y parmigiano.", p:65000, img:"pesto"},
-  {n:"Petto di pollo", d:"Pechuga de pollo, queso crema, albahaca, orégano, parmesano y aceite de oliva.", p:65000, img:"pollo"},
-  {n:"Mozzarella", d:"Salsa de tomates italianos y mucho queso mozzarella fior di latte.", p:55000, img:"mozzarella"}
+  {n:"Margherita Clásica", d:"Puré de tomates italianos, parmigiano reggiano, mozzarella fior di latte, albahaca fresca y aceite de oliva extra virgen.", m:60000, p:30000, img:"margherita"},
+  {n:"Diavola", d:"Puré de tomates italianos, mozzarella fior di latte, salame picante tipo pepperoni, chile jalapeño, albahaca fresca, parmigiano reggiano y aceite de oliva extra virgen.", m:65000, p:32000, img:"diavola"},
+  {n:"Pesto e Pomodorini", d:"Puré de tomates italianos, mozzarella fior di latte, tomates cherry, pesto de la casa, albahaca fresca y parmigiano reggiano.", m:60000, p:30000, img:"pesto-e-pomodorini"},
+  {n:"4 Formaggi", d:"Base bianca, mozzarella fior di latte, queso azul, queso Pyo, parmigiano reggiano, albahaca fresca y aceite de oliva extra virgen.", m:60000, p:30000, img:"4-formaggi"},
+  {n:"Petto di Pollo", d:"Base bianca, mozzarella fior di latte, pechuga de pollo desmechada, pancetta ahumada, queso cremoso, orégano seco fresco, parmigiano reggiano y aceite de oliva extra virgen.", m:65000, p:32000, img:"petto-di-pollo"},
+  {n:"Scarpariello", d:"Puré de tomates italianos, parmigiano reggiano, mozzarella fior di latte, tomates cherry confitados con ajo, albahaca fresca y aceite de oliva extra virgen.", m:60000, p:30000},
+  {n:"Antica Marinara", d:"Puré de tomates italianos, ajo en rodajas, orégano fresco, albahaca fresca y aceite de oliva extra virgen.", m:40000, p:25000},
+  {n:"Armá tu pizza", d:"Elegís la base, bianca o puré de tomates, y cada ingrediente suma Gs. 5.000. Contanos cuáles en la nota del pedido.", m:35000, p:20000}
 ];
-const bebidas = [{n:"Coca-Cola 250 ml", p:6000}, {n:"Coca-Cola Zero 250 ml", p:6000}, {n:"Coca-Cola 1 L", p:12000}];
-const items = [...pizzas.map(x => ({...x, tipo:"pizza"})), ...bebidas.map(x => ({...x, tipo:"bebida"}))];
+const bebidas = [{n:"Coca-Cola 1 L", p:12000}, {n:"Coca-Cola sin azúcar 1 L", p:12000}, {n:"Coca-Cola 1,5 L", p:15000}, {n:"Coca-Cola sin azúcar 1,5 L", p:15000}];
+const items = [...pizzas.flatMap((x,k) => [{n:x.n, t:"mediana", p:x.m, tipo:"pizza", k}, {n:x.n, t:"personal", p:x.p, tipo:"pizza", k}]), ...bebidas.map(x => ({...x, tipo:"bebida"}))];
+const NP = pizzas.length * 2;  // los primeros NP ítems son pizzas (mediana y personal)
+const nom = x => x.t ? `${x.n}, ${x.t}` : x.n;
+const Tam = t => t === "mediana" ? "Mediana" : "Personal";
 const cant = items.map(() => 0);
 const ctrl = (i, nom) => `<button type="button" class="agregar mas" data-i="${i}" aria-label="Agregar ${nom}"><svg class="ico" aria-hidden="true"><use href="#i-mas"/></svg>Agregar</button><div class="cant"><button type="button" class="menos" data-i="${i}" aria-label="Quitar ${nom}"><svg class="ico" aria-hidden="true"><use href="#i-menos"/></svg></button><output id="q${i}" aria-label="Cantidad de ${nom}">0</output><button type="button" class="mas" data-i="${i}" aria-label="Agregar otra ${nom}"><svg class="ico" aria-hidden="true"><use href="#i-mas"/></svg></button></div>`;
-document.getElementById("pizzas").innerHTML = pizzas.map((p,i) => `<article class="tarjeta" id="it${i}"><div class="ft"><img src="../img/${p.img}.jpg" alt="Pizza ${p.n}" width="900" height="675" loading="lazy"><span class="precio">${gs(p.p)}</span></div><div class="cuerpo"><div><h3>${p.n}</h3><p>${p.d}</p></div><div>${ctrl(i,p.n)}</div></div></article>`).join("");
-document.getElementById("bebidas").innerHTML = bebidas.map((b,k) => { const i = pizzas.length + k; return `<div class="beb" id="it${i}"><div><b>${b.n}</b><small>${gs(b.p)}</small></div><div>${ctrl(i,b.n)}</div></div>`; }).join("");
+const tams = k => [2*k, 2*k+1].map(i => `<div class="tam" id="it${i}"><span class="tam-n">${Tam(items[i].t)}<b>${gs(items[i].p)}</b></span><div>${ctrl(i, nom(items[i]))}</div></div>`).join("");
+document.getElementById("pizzas").innerHTML = pizzas.map((p,k) => `<article class="tarjeta" id="pz${k}">${p.img ? `<div class="ft"><img src="../img-marca/${p.img}.webp" alt="Pizza ${p.n}" width="1200" height="1500" loading="lazy"><span class="precio">Desde ${gs(p.p)}</span></div>` : ""}<div class="cuerpo"><div><h3>${p.n}</h3><p>${p.d}</p></div>${tams(k)}</div></article>`).join("");
+document.getElementById("bebidas").innerHTML = bebidas.map((b,k) => { const i = NP + k; return `<div class="beb" id="it${i}"><div><b>${b.n}</b><small>${gs(b.p)}</small></div><div>${ctrl(i,b.n)}</div></div>`; }).join("");
 
 const form = document.getElementById("form"), msg = document.getElementById("msg"), resumen = document.getElementById("resumen"), bar = document.getElementById("bar");
 const total = () => items.reduce((s,x,i) => s + x.p * cant[i], 0);
 const unidades = () => cant.reduce((a,b) => a + b, 0);
-const hayPizza = () => cant.slice(0, pizzas.length).some(Boolean);
+const hayPizza = () => cant.slice(0, NP).some(Boolean);
 function texto(){
   const d = new FormData(form), g = k => (d.get(k) || "").trim();
-  const lineas = items.map((x,i) => cant[i] ? `• ${cant[i]} × ${x.tipo === "pizza" ? "Pizza " : ""}${x.n} (${gs(x.p * cant[i])})` : "").filter(Boolean);
+  const lineas = items.map((x,i) => cant[i] ? `• ${cant[i]} × ${nom(x)} (${gs(x.p * cant[i])})` : "").filter(Boolean);
   const envio = g("entrega") === "Envío a domicilio";
   return `Hola${g("nombre") ? ", soy " + g("nombre") : ""}. Quiero pedir:\n${lineas.length ? lineas.join("\n") : "• (elegí tus pizzas)"}\nTotal: ${gs(total())}${envio ? " + envío" : ""}\n• ${g("entrega")}${envio && g("dir") ? ": " + g("dir") : ""}\n• Pago: ${g("pago")}` + (g("nota") ? `\n• Nota: ${g("nota")}` : "") + "\n¿Me confirman el tiempo de espera?";
 }
 let ultimo = "";
 function pintar(){
   items.forEach((x,i) => { document.getElementById("q"+i).value = cant[i]; document.getElementById("it"+i).classList.toggle("elegida", cant[i] > 0); });
-  const lin = items.map((x,i) => cant[i] ? `<div class="lin"><span>${cant[i]} × ${x.n}</span><span>${gs(x.p * cant[i])}</span></div>` : "").join("");
+  pizzas.forEach((p,k) => document.getElementById("pz"+k).classList.toggle("con", cant[2*k] + cant[2*k+1] > 0));
+  const lin = items.map((x,i) => cant[i] ? `<div class="lin"><span>${cant[i]} × ${nom(x)}</span><span>${gs(x.p * cant[i])}</span></div>` : "").join("");
   const html = lin ? lin + `<div class="lin tot"><span>Total</span><span>${gs(total())}</span></div>` : `<p class="vacio">Todavía no elegiste ninguna pizza. Tocá <b>Agregar</b> en la carta.</p>`;
   if (html !== ultimo) { resumen.innerHTML = html; ultimo = html; }  // la zona aria-live solo cambia si cambió el pedido
   document.getElementById("campo-dir").hidden = form.entrega.value !== "Envío a domicilio";

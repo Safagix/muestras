@@ -5,15 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>IL Nipote Di Venini · Muestra SafaGix</title>
 <meta name="robots" content="noindex, nofollow, noarchive">
-<meta name="theme-color" content="#FBF4EA">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+/* Paleta medida: tinta y blanco del logo, gris y oro de la carta, rojo tomate y verde albahaca de sus fotos, mozzarella y costra de sus pizzas */
 :root{
-  --fondo:#FBF4EA; --sup:#FFFDF9; --carbon:#211A16; --carbon-2:#6E5D52;
-  --pomo:#B8301C; --on-pomo:#FFFFFF; --basil:#2F6B3A; --oro:#F1C56B; --harina:#F2E6D3;
-  --linea:rgba(33,26,22,.14); --borde-img:rgba(0,0,0,.08);
+  --fondo:#FFFFFF; --sup:#FFFFFF; --carbon:#030303; --carbon-2:#6E6E6E;
+  --pomo:#A71F14; --on-pomo:#FFFFFF; --basil:#2B5F34; --oro:#D4A667; --dorado:color-mix(in oklab,#828256 78%,#030303); --harina:color-mix(in oklab,#E1D6B6 38%,#FFFFFF);
+  --linea:rgba(3,3,3,.14); --borde-img:rgba(0,0,0,.08);
   --r-sm:12px; --r-md:20px; --r-lg:28px; --curva:cubic-bezier(.22,1,.36,1);
   --titulo:"Young Serif", Georgia, serif; --texto:"Work Sans", ui-sans-serif, system-ui, sans-serif;
   --sombra:0 1px 2px rgba(33,26,22,.06), 0 16px 36px -16px rgba(33,26,22,.32);
@@ -21,8 +22,8 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --fondo:#16110E; --sup:#221A15; --carbon:#F7EDE1; --carbon-2:#CDBBA9;
-    --pomo:#FF7A5E; --on-pomo:#16110E; --basil:#7FC08C; --oro:#6A5320; --harina:#2E241D;
+    --fondo:#1A130B; --sup:#30251E; --carbon:#FFFFFF; --carbon-2:#E1D6B6;
+    --pomo:#EF8646; --on-pomo:#1A130B; --basil:#7FC08C; --oro:#D4A667; --dorado:#D4A667; --harina:#30251E;
     --linea:rgba(247,237,225,.14); --borde-img:rgba(255,255,255,.08);
     --sombra:0 1px 2px rgba(0,0,0,.4), 0 18px 40px -16px rgba(0,0,0,.7);
     color-scheme:dark;
@@ -43,9 +44,9 @@ p{text-wrap:pretty}
 .draft b{color:var(--carbon)}
 .top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px}
 .marca{display:flex;align-items:center;gap:12px;text-decoration:none}
-.sello{width:46px;height:46px;border-radius:50%;background:var(--carbon);color:var(--fondo);display:grid;place-items:center;font:400 13px/1 var(--titulo);text-align:center;letter-spacing:.02em;flex:none}
-.marca .nom{font:400 21px/1.05 var(--titulo)}
+.logo-img{display:block;height:62px;width:auto;outline:0}
 .marca .sub{display:block;font:600 12px/1.2 var(--texto);color:var(--carbon-2);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+.avatar{width:32px;height:32px;border-radius:50%;object-fit:cover;outline:0;flex:none;background:#fff}
 .top nav{display:none;gap:26px;font-size:15px;font-weight:600}
 .top nav a{text-decoration:none;color:var(--carbon-2)}
 .top nav a:hover{color:var(--carbon)}
@@ -81,12 +82,18 @@ section{padding-block:60px}
 .fila{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
 .precio{font:800 17px/1 var(--texto);font-variant-numeric:tabular-nums;white-space:nowrap}
 .fila{flex-wrap:wrap}
+.pizza.sin{grid-template-columns:1fr;padding:16px}
+.pizza .tams{grid-column:1 / -1;display:grid;gap:8px}
+.pizza .fila{margin-top:0;flex-wrap:nowrap}
+.tam{border-top:1px dashed var(--linea);padding-top:8px}
+.tam-n{display:block;font:600 12px/1.2 var(--texto);letter-spacing:.14em;text-transform:uppercase;color:var(--dorado)}
+.tam .precio{display:block;margin-top:4px}
 .cant{display:flex;align-items:center;gap:4px}
 .cant button{width:44px;height:44px;border-radius:50%;border:2px solid var(--linea);background:var(--fondo);color:var(--carbon);font:700 20px/1 var(--texto);cursor:pointer}
 .cant button:hover{border-color:var(--carbon)}
 .cant .mas{background:var(--pomo);border-color:var(--pomo);color:var(--on-pomo)}
 .cant output{min-width:24px;text-align:center;font:800 17px/1 var(--texto);font-variant-numeric:tabular-nums}
-.pizza.elegida{border-color:var(--pomo);box-shadow:inset 4px 0 0 var(--pomo)}
+.pizza.con{border-color:var(--pomo)}
 .bebidas{margin-top:22px;background:var(--harina);border-radius:var(--r-md);padding:8px 16px}
 .bebidas h3{font-size:22px;padding-top:10px}
 .beb{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-block:10px;border-bottom:1px dashed var(--linea)}
@@ -120,7 +127,6 @@ textarea{min-height:76px;resize:vertical}
 .wa{background:#E9DFD6;border-radius:22px;overflow:hidden;border:7px solid #211A16;box-shadow:var(--sombra)}
 .wa .barra-wa{background:#075E54;color:#fff;display:flex;align-items:center;gap:10px;padding:11px 14px;font-weight:700;font-size:15px}
 .wa .barra-wa small{display:block;font-weight:400;font-size:12px;opacity:.8}
-.wa .sello{width:32px;height:32px;font-size:9px;background:#fff;color:#211A16}
 .wa .chat{padding:14px}
 .burbuja{margin-left:auto;max-width:94%;background:#D9FDD3;color:#1F2C22;border-radius:12px 2px 12px 12px;padding:10px 12px;font-size:14.5px;line-height:1.45;white-space:pre-wrap;font-variant-numeric:tabular-nums;box-shadow:0 1px 1px rgba(0,0,0,.12)}
 .enviar{width:100%}
@@ -164,7 +170,7 @@ footer{padding-block:36px 120px;color:var(--carbon-2);font-size:14px}
 </head>
 <body>
 
-<p class="draft"><b>Muestra · SafaGix</b> para IL Nipote Di Venini · todavía no es su sitio oficial · fotos y precios tomados de su menú en PedidosYa</p>
+<p class="draft"><b>Muestra · SafaGix · opción 1</b> para IL Nipote Di Venini · todavía no es su sitio oficial · fotos y precios de su carta y su catálogo de WhatsApp</p>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 19.5 5.3 16A8 8 0 1 1 8 18.7L4 19.5Z"/></symbol>
@@ -178,8 +184,7 @@ footer{padding-block:36px 120px;color:var(--carbon-2);font-size:14px}
 <div class="cont">
   <header class="top">
     <a class="marca" href="#" aria-label="IL Nipote Di Venini, inicio">
-      <span class="sello" aria-hidden="true">NdV</span>
-      <span><span class="nom">IL Nipote Di Venini</span><span class="sub">Pizza napolitana · Villa Elisa</span></span>
+      <picture><source srcset="img-marca/logo-blanco.png" media="(prefers-color-scheme: dark)"><img class="logo-img" src="img-marca/logo-negro.png" alt="" width="461" height="189"></picture>
     </a>
     <nav aria-label="Secciones"><a href="#menu">Menú</a><a href="#pedido">Tu pedido</a><a href="#datos">Horario</a></nav>
   </header>
@@ -195,8 +200,8 @@ footer{padding-block:36px 120px;color:var(--carbon-2);font-size:14px}
         </div>
       </div>
       <div class="foto-hero ent r2">
-        <img src="img/portada.jpg" alt="Pizza Diavola con salame picante, cebolla morada y albahaca" width="900" height="675" fetchpriority="high">
-        <p class="horno"><b>Martes a domingo</b>de 18:00 a 23:00 · lunes cerrado</p>
+        <img src="img-marca/pesto-e-pomodorini.webp" alt="Pizza Pesto e Pomodorini con tomates cherry y pesto de la casa, sobre arpillera" width="1200" height="1455" fetchpriority="high">
+        <p class="horno"><b>Jueves a domingo</b>de 18:00 a 23:30 · lunes a miércoles cerrado</p>
       </div>
     </div>
   </main>
@@ -204,10 +209,10 @@ footer{padding-block:36px 120px;color:var(--carbon-2);font-size:14px}
 
 <section id="menu" aria-labelledby="t-menu" style="padding-top:0">
   <div class="cont">
-    <div class="cab"><h2 id="t-menu">El menú</h2><p>Pizzas medianas con tomates italianos, mozzarella fior di latte y aceite de oliva extra virgen. Tocá <b>+</b> para sumarlas a tu pedido.</p></div>
+    <div class="cab"><h2 id="t-menu">El menú</h2><p>Pizza 100 % artesanal con receta de familia italiana. Cada una en mediana o personal. Tocá <b>+</b> en el tamaño que quieras.</p></div>
     <div class="menu" id="pizzas"></div>
     <div class="bebidas"><h3>Bebidas</h3><div id="bebidas"></div></div>
-    <p class="nota-precios">Precios de ejemplo, tomados de su menú en PedidosYa. Se ajustan antes de publicar.</p>
+    <p class="nota-precios">Precios de su carta. Se confirman con el local antes de publicar.</p>
   </div>
 </section>
 
@@ -243,12 +248,12 @@ footer{padding-block:36px 120px;color:var(--carbon-2);font-size:14px}
         </div>
         <div class="campo">
           <label for="nota">Algo más <span class="op">(opcional)</span></label>
-          <input id="nota" name="nota" placeholder="Ej.: la Diavola sin cebolla">
+          <input id="nota" name="nota" placeholder="Ej.: la Diavola sin jalapeño">
         </div>
       </form>
       <div class="lado">
         <div class="wa" role="region" aria-label="Vista previa del mensaje">
-          <div class="barra-wa"><span class="sello" aria-hidden="true">NdV</span><span>IL Nipote Di Venini<small>Así les llega tu pedido</small></span></div>
+          <div class="barra-wa"><img class="avatar" src="img-marca/logo-cuadro.webp" alt="" width="64" height="64"><span>IL Nipote Di Venini<small>Así les llega tu pedido</small></span></div>
           <div class="chat"><p class="burbuja" id="msg" aria-live="polite"></p></div>
         </div>
         <span class="err" id="e-cart" aria-live="polite"></span>
@@ -271,14 +276,15 @@ footer{padding-block:36px 120px;color:var(--carbon-2);font-size:14px}
 
 <section id="datos" aria-label="Datos" style="padding-top:0">
   <div class="cont datos">
-    <div><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><p><b>Cocina</b><span>19 de Enero, Villa Elisa · solo envíos y retiro</span></p></div>
-    <div><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg><p><b>Horario</b><span>Martes a domingo de 18:00 a 23:00 · lunes cerrado</span></p></div>
-    <div><svg class="ico" aria-hidden="true"><use href="#i-moto"/></svg><p><b>Envíos</b><span>A Villa Elisa y alrededores (costo a confirmar)</span></p></div>
+    <div><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><p><b>Cocina</b><span>19 de Enero, Lambaré · solo envíos y retiro</span></p></div>
+    <div><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg><p><b>Horario</b><span>Jueves a domingo de 18:00 a 23:30 · lunes a miércoles cerrado</span></p></div>
+    <div><svg class="ico" aria-hidden="true"><use href="#i-moto"/></svg><p><b>Envíos</b><span>Zona y costo a confirmar con el local</span></p></div>
   </div>
 </section>
 
 <footer><div class="cont">
-  <a class="marca" href="#"><span class="sello" aria-hidden="true">NdV</span><span><span class="nom">IL Nipote Di Venini</span><span class="sub">@veniniparaguay</span></span></a>
+  <a class="marca" href="#" aria-label="IL Nipote Di Venini, volver arriba"><picture><source srcset="img-marca/logo-blanco.png" media="(prefers-color-scheme: dark)"><img class="logo-img" src="img-marca/logo-negro.png" alt="" width="461" height="189"></picture></a>
+  <p style="margin-top:8px">«Pizza 100 % artesanal con receta de familia italiana» · @veniniparaguay</p>
   <p style="margin-top:12px">Muestra preparada por SafaGix como propuesta. Precios, zona de envío y formas de pago se confirman con el local antes de publicar.</p>
 </div></footer>
 
@@ -288,34 +294,41 @@ footer{padding-block:36px 120px;color:var(--carbon-2);font-size:14px}
 const WA = "595994634252";
 const wa = t => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
 const gs = n => "Gs. " + n.toLocaleString("es-PY");
+// Carta del local (01_carta.jpg): cada pizza en mediana y personal.
 const pizzas = [
-  {n:"Margherita", d:"Tomates italianos, parmigiano reggiano, mozzarella fior di latte, albahaca fresca y aceite de oliva.", p:60000, img:"margherita"},
-  {n:"Diavola", d:"Tomate, mozzarella, salame picante tipo pepperoni, cebolla morada y aceite de oliva con ají.", p:65000, img:"diavola"},
-  {n:"Pesto e pomodorini", d:"Tomates italianos, mozzarella fior di latte, tomates cherry, pesto de albahaca de la casa y parmigiano.", p:65000, img:"pesto"},
-  {n:"Petto di pollo", d:"Pechuga de pollo, queso crema, albahaca, orégano, parmesano y aceite de oliva.", p:65000, img:"pollo"},
-  {n:"Mozzarella", d:"Salsa de tomates italianos y mucho queso mozzarella fior di latte.", p:55000, img:"mozzarella"}
+  {n:"Margherita Clásica", d:"Puré de tomates italianos, parmigiano reggiano, mozzarella fior di latte, albahaca fresca y aceite de oliva extra virgen.", m:60000, p:30000, img:"margherita"},
+  {n:"Diavola", d:"Puré de tomates italianos, mozzarella fior di latte, salame picante tipo pepperoni, chile jalapeño, albahaca fresca, parmigiano reggiano y aceite de oliva extra virgen.", m:65000, p:32000, img:"diavola"},
+  {n:"Pesto e Pomodorini", d:"Puré de tomates italianos, mozzarella fior di latte, tomates cherry, pesto de la casa, albahaca fresca y parmigiano reggiano.", m:60000, p:30000, img:"pesto-e-pomodorini"},
+  {n:"4 Formaggi", d:"Base bianca, mozzarella fior di latte, queso azul, queso Pyo, parmigiano reggiano, albahaca fresca y aceite de oliva extra virgen.", m:60000, p:30000, img:"4-formaggi"},
+  {n:"Petto di Pollo", d:"Base bianca, mozzarella fior di latte, pechuga de pollo desmechada, pancetta ahumada, queso cremoso, orégano seco fresco, parmigiano reggiano y aceite de oliva extra virgen.", m:65000, p:32000, img:"petto-di-pollo"},
+  {n:"Scarpariello", d:"Puré de tomates italianos, parmigiano reggiano, mozzarella fior di latte, tomates cherry confitados con ajo, albahaca fresca y aceite de oliva extra virgen.", m:60000, p:30000},
+  {n:"Antica Marinara", d:"Puré de tomates italianos, ajo en rodajas, orégano fresco, albahaca fresca y aceite de oliva extra virgen.", m:40000, p:25000},
+  {n:"Armá tu pizza", d:"Elegís la base, bianca o puré de tomates, y cada ingrediente suma Gs. 5.000. Contanos cuáles en la nota del pedido.", m:35000, p:20000}
 ];
-const bebidas = [
-  {n:"Coca-Cola 250 ml", p:6000}, {n:"Coca-Cola Zero 250 ml", p:6000}, {n:"Coca-Cola 1 L", p:12000}
-];
-const items = [...pizzas.map(x => ({...x, tipo:"pizza"})), ...bebidas.map(x => ({...x, tipo:"bebida"}))];
+const bebidas = [{n:"Coca-Cola 1 L", p:12000}, {n:"Coca-Cola sin azúcar 1 L", p:12000}, {n:"Coca-Cola 1,5 L", p:15000}, {n:"Coca-Cola sin azúcar 1,5 L", p:15000}];
+const items = [...pizzas.flatMap((x,k) => [{n:x.n, t:"mediana", p:x.m, tipo:"pizza", k}, {n:x.n, t:"personal", p:x.p, tipo:"pizza", k}]), ...bebidas.map(x => ({...x, tipo:"bebida"}))];
+const NP = pizzas.length * 2;  // los primeros NP ítems son pizzas (mediana y personal)
+const nom = x => x.t ? `${x.n}, ${x.t}` : x.n;
+const Tam = t => t === "mediana" ? "Mediana" : "Personal";
 const cant = items.map(() => 0);
 const ctrl = (i, nom) => `<div class="cant"><button type="button" class="menos" data-i="${i}" aria-label="Quitar ${nom}">−</button><output id="q${i}" aria-label="Cantidad de ${nom}">0</output><button type="button" class="mas" data-i="${i}" aria-label="Agregar ${nom}">+</button></div>`;
-document.getElementById("pizzas").innerHTML = pizzas.map((p,i) => `<article class="pizza" id="it${i}"><img src="img/${p.img}.jpg" alt="Pizza ${p.n}" width="224" height="224" loading="lazy"><div><h3>${p.n}</h3><p>${p.d}</p><div class="fila"><span class="precio">${gs(p.p)}</span>${ctrl(i,p.n)}</div></div></article>`).join("");
-document.getElementById("bebidas").innerHTML = bebidas.map((b,k) => { const i = pizzas.length + k; return `<div class="beb" id="it${i}"><div><b>${b.n}</b><small>${gs(b.p)}</small></div>${ctrl(i,b.n)}</div>`; }).join("");
+const tams = k => [2*k, 2*k+1].map(i => `<div class="fila tam" id="it${i}"><span><span class="tam-n">${Tam(items[i].t)}</span><span class="precio">${gs(items[i].p)}</span></span>${ctrl(i, nom(items[i]))}</div>`).join("");
+document.getElementById("pizzas").innerHTML = pizzas.map((p,k) => `<article class="pizza${p.img ? "" : " sin"}" id="pz${k}">${p.img ? `<img src="img-marca/${p.img}.webp" alt="Pizza ${p.n}" width="224" height="224" loading="lazy">` : ""}<div><h3>${p.n}</h3><p>${p.d}</p></div><div class="tams">${tams(k)}</div></article>`).join("");
+document.getElementById("bebidas").innerHTML = bebidas.map((b,k) => { const i = NP + k; return `<div class="beb" id="it${i}"><div><b>${b.n}</b><small>${gs(b.p)}</small></div>${ctrl(i,b.n)}</div>`; }).join("");
 
 const form = document.getElementById("form"), msg = document.getElementById("msg"), resumen = document.getElementById("resumen"), bar = document.getElementById("bar");
 const total = () => items.reduce((s,x,i) => s + x.p * cant[i], 0);
 const unidades = () => cant.reduce((a,b) => a + b, 0);
 function texto(){
   const d = new FormData(form), g = k => (d.get(k) || "").trim();
-  const lineas = items.map((x,i) => cant[i] ? `• ${cant[i]} × ${x.tipo === "pizza" ? "Pizza " : ""}${x.n} (${gs(x.p * cant[i])})` : "").filter(Boolean);
+  const lineas = items.map((x,i) => cant[i] ? `• ${cant[i]} × ${nom(x)} (${gs(x.p * cant[i])})` : "").filter(Boolean);
   const envio = g("entrega") === "Envío a domicilio";
   return `Hola${g("nombre") ? ", soy " + g("nombre") : ""}. Quiero pedir:\n${lineas.length ? lineas.join("\n") : "• (elegí tus pizzas)"}\nTotal: ${gs(total())}${envio ? " + envío" : ""}\n• ${g("entrega")}${envio && g("dir") ? ": " + g("dir") : ""}\n• Pago: ${g("pago")}` + (g("nota") ? `\n• Nota: ${g("nota")}` : "") + "\n¿Me confirman el tiempo de espera?";
 }
 function pintar(){
   items.forEach((x,i) => { document.getElementById("q"+i).value = cant[i]; document.getElementById("it"+i).classList.toggle("elegida", cant[i] > 0); });
-  const lin = items.map((x,i) => cant[i] ? `<div class="lin"><span>${cant[i]} × ${x.n}</span><span>${gs(x.p * cant[i])}</span></div>` : "").join("");
+  pizzas.forEach((p,k) => document.getElementById("pz"+k).classList.toggle("con", cant[2*k] + cant[2*k+1] > 0));
+  const lin = items.map((x,i) => cant[i] ? `<div class="lin"><span>${cant[i]} × ${nom(x)}</span><span>${gs(x.p * cant[i])}</span></div>` : "").join("");
   resumen.innerHTML = lin ? lin + `<div class="lin tot"><span>Total</span><span>${gs(total())}</span></div>` : `<p class="vacio">Todavía no elegiste ninguna pizza. Tocá <b>+</b> en el menú.</p>`;
   document.getElementById("campo-dir").hidden = form.entrega.value !== "Envío a domicilio";
   msg.textContent = texto();
