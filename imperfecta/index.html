@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Imperfecta · cuidado y belleza capilar</title>
+<meta name="description" content="Imperfecta, en la galería Súpermas de Ñemby: color, tratamientos, manos y cejas. Reservá tu cita por WhatsApp.">
+<meta name="theme-color" content="#fbf7f4">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Mulish:wght@400;600;700&family=Allura&display=swap" rel="stylesheet">
+<style>
+:root{--blanco:#fbf7f4;--polvo:#f3d6d0;--polvo2:#f8e7e3;--vino:#7a1f2b;--negro:#1b1717;--suave:#6a5c58;--linea:#e7dcd7}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--blanco);color:var(--negro);font:400 16px/1.65 Mulish,system-ui,sans-serif;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+::selection{background:var(--polvo)}
+:focus-visible{outline:2px solid var(--vino);outline-offset:3px}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+/* logotipo escrito: IMPERFECTA sobre el trazo rosa, como su logo */
+.logotipo{display:inline-block;position:relative;text-align:center;padding-top:22px}
+.logotipo b{position:relative;display:inline-block;font:400 26px/1 "Tenor Sans",sans-serif;letter-spacing:.14em;padding:8px 6px 7px 10px}
+.logotipo b::before{content:"";position:absolute;inset:4px -8px 2px -10px;background:var(--polvo);border-radius:40% 12% 35% 10%/60% 30% 70% 40%;transform:rotate(-1.2deg);z-index:-1}
+.logotipo small{display:block;margin-top:8px;font:600 11px Mulish,sans-serif;letter-spacing:.32em}
+header{max-width:560px;margin:0 auto;padding:0 20px}
+.top{text-align:center}
+.hero{display:grid;grid-template-columns:1fr 46%;gap:16px;align-items:end;margin-top:26px}
+h1{font:400 clamp(28px,8.2vw,40px)/1.12 "Tenor Sans",sans-serif;text-wrap:balance}
+.firma{font:400 34px/1 Allura,cursive;color:var(--vino);margin-top:8px}
+.hero img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:16px}
+.sub{margin-top:18px;color:var(--suave);text-wrap:pretty}
+.dato{margin-top:10px;font-size:15px;color:var(--suave)}
+.dato b{color:var(--vino)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border:0;border-radius:999px;background:var(--vino);color:#fff;font:700 15px Mulish,sans-serif;letter-spacing:.06em;text-decoration:none;cursor:pointer;transition:transform .16s cubic-bezier(.23,1,.32,1),background .2s}
+.btn:active{transform:scale(.97)}
+@media (hover:hover){.btn:hover{background:#932737}}
+header .btn{width:100%;margin-top:16px}
+.pausa{margin-top:56px;background:var(--vino);color:#fff;padding:40px 24px;text-align:center}
+.pausa p{font:400 clamp(24px,7vw,34px)/1.35 "Tenor Sans",sans-serif;letter-spacing:.04em}
+.pausa small{display:block;margin-top:14px;color:#f3d6d0;font-size:15px;letter-spacing:0;max-width:34ch;margin-inline:auto}
+section{padding:56px 0 0}
+h2{font:400 28px/1.15 "Tenor Sans",sans-serif;text-wrap:balance}
+.lead{color:var(--suave);margin-top:8px}
+.trabajos{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:18px -20px 0;padding:0 20px 6px;scrollbar-width:none}
+.trabajos::-webkit-scrollbar{display:none}
+.trabajos img{flex:none;width:58%;max-width:240px;aspect-ratio:4/5;object-fit:cover;border-radius:14px;scroll-snap-align:start}
+.menu{list-style:none;padding:0;margin-top:16px}
+.menu li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 0;border-bottom:1px solid var(--linea)}
+.menu span{font:400 18px "Tenor Sans",sans-serif}
+.menu small{display:block;font:400 14px Mulish,sans-serif;color:var(--suave)}
+.mini{flex:none;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--vino);background:none;color:var(--vino);font:700 13px Mulish,sans-serif;letter-spacing:.04em;cursor:pointer}
+@media (hover:hover){.mini:hover{background:var(--polvo2)}}
+.voz{margin-top:24px;padding:24px 20px;background:var(--polvo2);border-radius:18px}
+.voz p{font:400 19px/1.45 "Tenor Sans",sans-serif}
+.voz cite{display:block;margin-top:10px;font:400 14px Mulish,sans-serif;font-style:normal;color:var(--suave)}
+form{margin-top:18px;display:grid;gap:22px}
+fieldset{border:0;padding:0;min-width:0}
+legend{font-weight:700;margin-bottom:10px;font-size:15px;letter-spacing:.04em}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;margin:0}
+.chip span{display:flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--linea);font-size:15px;cursor:pointer;background:#fff}
+.chip input:checked+span{background:var(--negro);border-color:var(--negro);color:#fff;font-weight:700}
+.chip input:focus-visible+span{outline:2px solid var(--vino);outline-offset:2px}
+.previa{background:#fff;border:1px solid var(--linea);border-radius:14px;padding:14px 16px;color:var(--suave);font-size:15px}
+.previa b{display:block;color:var(--negro);font-size:13px;margin-bottom:4px}
+.datos{margin-top:20px;color:var(--suave);display:grid;gap:2px}
+footer{margin-top:60px;padding:22px 20px calc(28px + env(safe-area-inset-bottom));border-top:1px solid var(--linea);color:var(--suave);font-size:14px;text-align:center}
+@media (prefers-reduced-motion:no-preference){.hero img{animation:aparece .9s cubic-bezier(.23,1,.32,1) both}@keyframes aparece{from{opacity:0;transform:scale(.98)}}}
+#dias .chip span{text-transform:capitalize}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><p class="logotipo" aria-label="Imperfecta peluquería"><b>IMPERFECTA</b><small>PELUQUERÍA</small></p></div>
+  <div class="hero">
+    <div>
+      <h1>Tu espacio de cuidado y belleza</h1>
+      <p class="firma">en Ñemby</p>
+    </div>
+    <img src="img/ondas-doradas.jpg" alt="Clienta con ondas y mechas doradas" width="281" height="343" fetchpriority="high">
+  </div>
+  <p class="sub">Tratamientos, color, manos y cejas. Resultados que se sostienen en el tiempo.</p>
+  <p class="dato"><b>4,8</b> en Google Maps · 44 reseñas · <b>4.704</b> seguidores en Instagram</p>
+  <a class="btn" href="#turno">Reservá tu cita</a>
+</header>
+
+<div class="pausa"><p>Tu espacio.<br>Tu pausa.<br>Tu momento.</p><small>Donde el silencio también embellece y cada rincón fue pensado para vos.</small></div>
+
+<main class="wrap">
+  <section aria-labelledby="t-trab">
+    <h2 id="t-trab">El color que mejor va con vos</h2>
+    <p class="lead">En Imperfecta trabajamos cada detalle para encontrar el estilo y el color que mejor van con vos.</p>
+    <div class="trabajos" tabindex="0" aria-label="Trabajos del salón">
+      <img src="img/mechas.jpg" alt="Proceso de mechas con papel" width="250" height="343" loading="lazy">
+      <img src="img/lavado.jpg" alt="Lavado y tratamiento en el salón" width="280" height="343" loading="lazy">
+      <img src="img/pieza.jpg" alt="Pieza del salón: Cuidamos tu cabello porque merece lo mejor" width="280" height="343" loading="lazy">
+    </div>
+  </section>
+
+  <section aria-labelledby="t-menu">
+    <h2 id="t-menu">Servicios</h2>
+    <ul class="menu">
+      <li><div><span>Color</span><small>Dorados, mechas, balayage y castaños · consultar</small></div><button class="mini" type="button" data-elegir="color">Elegir</button></li>
+      <li><div><span>Ondas</span><small>Consultar</small></div><button class="mini" type="button" data-elegir="ondas">Elegir</button></li>
+      <li><div><span>Tratamientos capilares</span><small>Con L'Oréal Vitamino Color · consultar</small></div><button class="mini" type="button" data-elegir="tratamiento capilar">Elegir</button></li>
+      <li><div><span>Manos</span><small>Consultar</small></div><button class="mini" type="button" data-elegir="manos">Elegir</button></li>
+      <li><div><span>Cejas</span><small>Consultar</small></div><button class="mini" type="button" data-elegir="cejas">Elegir</button></li>
+      <li><div><span>Maquillaje para eventos</span><small>Consultar</small></div><button class="mini" type="button" data-elegir="maquillaje para un evento">Elegir</button></li>
+    </ul>
+    <div class="voz"><p>«Te asesoran en todo y encima te miman con la merienda incluida! 1.000/10»</p><cite>Reseña en Google Maps</cite></div>
+  </section>
+
+  <section aria-labelledby="t-turno">
+    <h2 id="t-turno">Reservá tu cita por WhatsApp</h2>
+    <p class="lead">Elegí servicio, día y franja. El mensaje se escribe solo.</p>
+    <form id="turno">
+      <fieldset><legend>Servicio</legend><div class="chips">
+        <label class="chip"><input type="radio" name="servicio" value="color" checked><span>Color</span></label>
+        <label class="chip"><input type="radio" name="servicio" value="ondas"><span>Ondas</span></label>
+        <label class="chip"><input type="radio" name="servicio" value="tratamiento capilar"><span>Tratamiento</span></label>
+        <label class="chip"><input type="radio" name="servicio" value="manos"><span>Manos</span></label>
+        <label class="chip"><input type="radio" name="servicio" value="cejas"><span>Cejas</span></label>
+        <label class="chip"><input type="radio" name="servicio" value="maquillaje para un evento"><span>Maquillaje</span></label>
+      </div></fieldset>
+      <fieldset><legend>Día</legend><div class="chips" id="dias"></div></fieldset>
+      <fieldset><legend>Franja</legend><div class="chips">
+        <label class="chip"><input type="radio" name="franja" value="mañana" checked><span>Mañana</span></label>
+        <label class="chip"><input type="radio" name="franja" value="tarde"><span>Tarde</span></label>
+      </div></fieldset>
+      <p class="previa" aria-live="polite"><b>Tu mensaje</b><span id="msg"></span></p>
+      <button class="btn" type="submit">Enviar por WhatsApp</button>
+    </form>
+    <div class="datos">
+      <p>Martes a sábado, desde las 10:00</p>
+      <p>Galería Súpermas, local E3, Acceso Sur, Ñemby</p>
+    </div>
+  </section>
+</main>
+<footer>Muestra de diseño · las fotos son de Imperfecta</footer>
+<script>
+const WA_NUMERO = "";
+const NEGOCIO = "Imperfecta", PEDIDO = "una cita";
+(() => {
+  const f = document.getElementById("turno"), out = document.getElementById("msg");
+  const largo = new Intl.DateTimeFormat("es-PY", {weekday: "long", day: "numeric", month: "long"});
+  const corto = new Intl.DateTimeFormat("es-PY", {weekday: "short", day: "numeric"});
+  const d = new Date(); let html = "";
+  for (let n = 0; n < 6;) { d.setDate(d.getDate() + 1); if (d.getDay() < 2) continue; // cierra domingo y lunes
+    html += `<label class="chip"><input type="radio" name="dia" value="${largo.format(d).replace(",", "")}"${n ? "" : " checked"}><span>${corto.format(d).replace(/[.,]/g, "")}</span></label>`; n++; }
+  document.getElementById("dias").innerHTML = html;
+  const val = n => (f.querySelector(`[name="${n}"]:checked`) || f.querySelector(`[name="${n}"]:not([type=radio])`) || {}).value || "";
+  const extras = () => [...new Set([...f.querySelectorAll("[data-msg]")].map(e => e.name))].map(n => {
+    const e = f.querySelector(`[name="${n}"][data-msg]`), v = val(n).trim(); return v ? " " + e.dataset.msg.replace("{v}", v) : ""; }).join("");
+  const texto = () => `Hola ${NEGOCIO}, quisiera reservar ${PEDIDO} para ${val("servicio")}, el ${val("dia")}, por la ${val("franja")}.${extras()} ¿Tienen lugar?`;
+  const pinta = () => { out.textContent = texto(); };
+  f.addEventListener("input", pinta); f.addEventListener("change", pinta); pinta();
+  f.addEventListener("submit", e => { e.preventDefault(); window.open(`https://wa.me/${WA_NUMERO}?text=${encodeURIComponent(texto())}`, "_blank", "noopener"); });
+  document.querySelectorAll("[data-elegir]").forEach(b => b.addEventListener("click", () => {
+    const r = f.querySelector(`[name="servicio"][value="${b.dataset.elegir}"]`); if (r) { r.checked = true; pinta(); }
+    f.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}); }));
+})();
+</script>
+</body>
+</html>
