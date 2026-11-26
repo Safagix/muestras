@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#1f1d1e">
+<title>Deli Pizza Beer · Carta y pedidos · Itauguá</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --pizarra:#1f1d1e;      /* fondo negro de su carta */
+  --pizarra-2:#2a2728;
+  --tiza:#f4f1ea;          /* blanco del logo */
+  --tiza-2:#b9b3aa;
+  --amarillo:#ffe100;      /* cintas y precios de su carta */
+  --ladrillo:#a4502a;      /* pared del local, detrás del cartel */
+  --linea:#3b3739;
+  --display:"Oswald","Arial Narrow",sans-serif;
+  --texto:"Barlow Semi Condensed","Arial Narrow",sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--pizarra);color:var(--tiza);font:400 1.05rem/1.45 var(--texto);padding-bottom:env(safe-area-inset-bottom)}
+::selection{background:var(--amarillo);color:var(--pizarra)}
+img{display:block;max-width:100%}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--amarillo);outline-offset:3px}
+.envoltura{max-width:68rem;margin:0 auto;padding:0 1rem}
+
+/* Portada */
+.portada{padding:1.1rem 0 1.4rem}
+.marca{display:grid;grid-template-columns:5.5rem 1fr;gap:.9rem;align-items:center}
+.marca img{width:5.5rem;height:5.5rem;border-radius:50%;background:#fff;border:3px solid var(--tiza)}
+h1{font:700 3.6rem/.88 var(--display);text-transform:uppercase;letter-spacing:.01em}
+h1 span{display:block;font-size:1.32rem;letter-spacing:.02em;font-weight:500;margin-top:.35rem}
+.bajada{margin-top:.9rem;font-size:1.12rem;color:var(--tiza);text-wrap:pretty}
+.foto-portada{position:relative;margin:1rem -1rem 0}
+.foto-portada img{width:100%;height:min(78vw,26rem);object-fit:cover;object-position:50% 40%}
+.cinta{display:inline-block;background:var(--amarillo);color:var(--pizarra);font:600 1.05rem/1 var(--display);text-transform:uppercase;letter-spacing:.04em;padding:.55rem 1.4rem .55rem 1.1rem;clip-path:polygon(0 0,100% 0,calc(100% - .7rem) 50%,100% 100%,0 100%,.7rem 50%)}
+.foto-portada .cinta{position:absolute;left:1rem;bottom:-1rem}
+.datos{display:flex;flex-wrap:wrap;gap:.35rem 1.1rem;margin-top:1.7rem;font-size:1rem;color:var(--tiza-2)}
+.datos b{color:var(--tiza);font-weight:600}
+.acciones{display:grid;gap:.6rem;margin-top:1.1rem}
+.boton{display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:3.1rem;padding:.7rem 1.2rem;border-radius:.35rem;font:600 1.1rem/1 var(--display);text-transform:uppercase;letter-spacing:.05em;text-decoration:none;border:2px solid var(--amarillo);cursor:pointer;transition:transform .16s cubic-bezier(.23,1,.32,1),background-color .16s}
+.boton:active{transform:scale(.97)}
+.boton.lleno{background:var(--amarillo);color:var(--pizarra)}
+.boton.vacio{background:transparent;color:var(--amarillo)}
+@media (hover:hover){.boton.vacio:hover{background:rgba(255,225,0,.1)}.boton.lleno:hover{background:#fff06b}}
+.enlace-wa{display:inline-flex;align-items:center;gap:.45rem;min-height:2.75rem;color:var(--tiza);font-size:1.05rem;text-underline-offset:.2em;justify-self:center}
+.enlace-wa svg{width:1.15rem;height:1.15rem;color:#25d366}
+.boton svg{width:1.25rem;height:1.25rem;flex:none}
+
+/* Carta */
+.carta{padding:2.2rem 0 1rem;border-top:1px solid var(--linea)}
+h2.cinta{font-size:1.5rem;padding:.6rem 1.7rem .6rem 1.2rem}
+.nota{margin-top:.8rem;color:var(--tiza-2);font-size:.98rem;text-wrap:pretty}
+.tamanos{position:sticky;top:0;z-index:5;background:var(--pizarra);margin:1rem -1rem 0;padding:.7rem 1rem;border-bottom:1px solid var(--linea)}
+.tamanos p{font:500 .95rem/1.2 var(--texto);color:var(--tiza-2);margin-bottom:.45rem}
+.opciones{display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem}
+.opciones button{min-height:3.3rem;padding:.35rem .2rem;background:var(--pizarra-2);border:1px solid var(--linea);border-radius:.3rem;cursor:pointer;line-height:1.05;transition:background-color .16s,border-color .16s}
+.opciones button b{display:block;font:600 .98rem/1.1 var(--display);text-transform:uppercase}
+.opciones button small{display:block;font-size:.8rem;color:var(--tiza-2);margin-top:.15rem}
+.opciones button[aria-pressed="true"]{background:var(--amarillo);border-color:var(--amarillo);color:var(--pizarra)}
+.opciones button[aria-pressed="true"] small{color:var(--pizarra)}
+.saltos{display:flex;gap:.4rem;margin-top:1.1rem;overflow-x:auto;scrollbar-width:none}
+.saltos a{flex:none;font:500 1rem/1 var(--display);text-transform:uppercase;letter-spacing:.04em;padding:.7rem .9rem;border:1px solid var(--linea);border-radius:2rem;text-decoration:none;color:var(--tiza-2)}
+@media (hover:hover){.saltos a:hover{color:var(--tiza);border-color:var(--tiza-2)}}
+.grupo{margin-top:1.8rem;scroll-margin-top:7.5rem}
+.grupo h3{font:600 1.35rem/1.1 var(--display);text-transform:uppercase;letter-spacing:.05em;color:var(--amarillo);padding-bottom:.5rem;border-bottom:2px solid var(--amarillo)}
+.lista{list-style:none;margin:0;padding:0}
+.fila{display:grid;grid-template-columns:1fr auto;gap:.3rem .8rem;padding:.9rem 0;border-bottom:1px solid var(--linea);align-items:start}
+.fila h4{grid-row:1;margin:0;font:600 1.15rem/1.15 var(--display);text-transform:uppercase;letter-spacing:.03em}
+.fila p{grid-column:1;grid-row:2;color:var(--tiza-2);font-size:.98rem;line-height:1.35}
+.fila .foto{grid-column:1/-1;grid-row:3;margin:.5rem 0 0;border-radius:.3rem;width:100%;height:11rem;object-fit:cover}
+.precio{display:inline-block;background:var(--amarillo);color:var(--pizarra);font:600 1rem/1 var(--display);padding:.35rem .45rem;white-space:nowrap;font-variant-numeric:tabular-nums}
+.lado{grid-column:2;grid-row:1/span 2;display:flex;flex-direction:column;align-items:flex-end;gap:.45rem}
+.sumar{min-width:2.9rem;min-height:2.9rem;border-radius:50%;border:2px solid var(--amarillo);background:transparent;color:var(--amarillo);cursor:pointer;display:grid;place-items:center;transition:transform .16s cubic-bezier(.23,1,.32,1),background-color .16s}
+.sumar svg{width:1.2rem;height:1.2rem}
+.sumar:active{transform:scale(.92)}
+.sumar.hecho{background:var(--amarillo);color:var(--pizarra)}
+@media (hover:hover){.sumar:hover{background:rgba(255,225,0,.14)}}
+
+/* Además */
+.ademas{padding:2.2rem 0 1rem;border-top:1px solid var(--linea);margin-top:2rem}
+.bloque{display:grid;gap:.9rem;margin-top:1.6rem}
+.bloque img{width:100%;height:15rem;object-fit:cover;border-radius:.3rem}
+
+/* Local */
+.local{padding:2.2rem 0 2rem;border-top:1px solid var(--linea);margin-top:2rem}
+.local .cartel{margin:1.2rem -1rem 0;border-top:4px solid var(--ladrillo)}
+.local .cartel img{width:100%;height:14rem;object-fit:cover}
+.horario{margin-top:1.2rem;display:grid;grid-template-columns:auto 1fr;gap:.35rem 1rem;font-size:1.05rem}
+.horario dt{color:var(--tiza-2)}
+.horario dd{margin:0;font-variant-numeric:tabular-nums}
+.direccion{margin-top:1rem;font-size:1.08rem}
+.local .acciones{margin-top:1.3rem}
+
+footer{padding:1.6rem 1rem 7rem;text-align:center;color:var(--tiza-2);font-size:.9rem;border-top:1px solid var(--linea)}
+
+/* Pedido */
+.pedido{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--amarillo);color:var(--pizarra);padding:.7rem 1rem calc(.7rem + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr auto;gap:.7rem;align-items:center;transform:translateY(110%);transition:transform .28s cubic-bezier(.23,1,.32,1);box-shadow:0 -6px 20px rgba(0,0,0,.35)}
+.pedido.visible{transform:none}
+.pedido p{font:500 1rem/1.25 var(--texto)}
+.pedido b{font:600 1.15rem/1.1 var(--display);display:block;font-variant-numeric:tabular-nums}
+.pedido .boton{background:var(--pizarra);color:var(--amarillo);border-color:var(--pizarra);min-height:3rem}
+.pedido .ver{background:none;border:0;padding:.2rem 0;text-decoration:underline;text-underline-offset:.2em;cursor:pointer;font-size:.95rem;min-height:2.75rem}
+dialog{width:min(30rem,calc(100% - 2rem));background:var(--pizarra-2);color:var(--tiza);border:1px solid var(--linea);border-radius:.4rem;padding:1.2rem}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+dialog h2{font:600 1.4rem/1.1 var(--display);text-transform:uppercase}
+dialog ul{list-style:none;padding:0;margin:1rem 0}
+dialog li{display:grid;grid-template-columns:1fr auto;gap:.3rem .6rem;align-items:center;padding:.6rem 0;border-bottom:1px solid var(--linea)}
+dialog li small{display:block;color:var(--tiza-2)}
+.cant{display:flex;align-items:center;gap:.3rem}
+.cant button{width:2.75rem;height:2.75rem;border-radius:50%;border:1px solid var(--tiza-2);background:none;cursor:pointer;font-size:1.2rem}
+.cant span{min-width:1.5rem;text-align:center;font-variant-numeric:tabular-nums}
+dialog .total{display:flex;justify-content:space-between;font:600 1.2rem/1 var(--display);margin:.4rem 0 1rem}
+dialog .cerrar{margin-top:.6rem;width:100%}
+
+@media (min-width:48rem){
+  .portada .envoltura{display:grid;grid-template-columns:1fr 1.15fr;gap:2.5rem;align-items:center}
+  .foto-portada{margin:0;order:2}
+  .foto-portada img{height:30rem;border-radius:.4rem}
+  .local .acciones{grid-template-columns:1fr 1fr}
+  .tamanos{margin:1rem 0 0;padding:.7rem 0}
+  .listas{display:grid;grid-template-columns:1fr 1fr;gap:0 2.5rem}
+  .bloques{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .local .cartel{margin:1.2rem 0 0}
+  .local .cartel img{height:22rem}
+  .pedido{left:50%;right:auto;width:34rem;transform:translate(-50%,110%);border-radius:.4rem .4rem 0 0}
+  .pedido.visible{transform:translate(-50%,0)}
+}
+</style>
+</head>
+<body>
+
+<header class="portada">
+  <div class="envoltura">
+    <div>
+      <div class="marca">
+        <img src="img/logo.jpg" alt="Logo de Deli Pizza Beer" width="720" height="720">
+        <h1>Deli<span>Pizza Beer</span></h1>
+      </div>
+      <p class="bajada">Pizzería y chopp en Itauguá: 30 sabores de pizza, con envío a domicilio.</p>
+      <div class="datos">
+        <span>Hoy: <b id="hoy">16:00 a 00:00</b></span>
+        <span><b>4,4</b> en Google · 129 reseñas</span>
+      </div>
+      <div class="acciones">
+        <a class="boton lleno" href="#carta">Elegir mi pizza</a>
+        <a class="enlace-wa" id="wa-directo" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.7 2.2 13.9 2.2 12 2.2 6.6 6.6 2.2 12 2.2S21.8 6.6 21.8 12 17.4 21.8 12 21.8zM12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6C8 23.4 10 24 12 24c6.6 0 12-5.4 12-12S18.6 0 12 0z"/></svg>
+          O escribinos directo por WhatsApp
+        </a>
+      </div>
+    </div>
+    <figure class="foto-portada" style="margin-block-end:0">
+      <img src="img/pizza-albahaca.jpg" alt="Pizza de Deli recién salida, con albahaca, aceitunas y cebolla morada" width="720" height="659" fetchpriority="high">
+    </figure>
+  </div>
+</header>
+
+<main>
+  <section class="carta" id="carta" aria-labelledby="t-carta">
+    <div class="envoltura">
+      <h2 class="cinta" id="t-carta">La carta de pizzas</h2>
+      <p class="nota">Precios de la carta, se confirman al pedir.</p>
+
+      <div class="tamanos">
+        <p id="t-tam">Elegí el tamaño y sumá los sabores:</p>
+        <div class="opciones" role="group" aria-labelledby="t-tam" id="opciones"></div>
+      </div>
+
+      <nav class="saltos" aria-label="Grupos de la carta">
+        <a href="#clasicos">Clásicos</a><a href="#especiales">Especiales</a><a href="#premium">Premium</a>
+      </nav>
+      <div class="listas" id="listas"></div>
+    </div>
+  </section>
+
+  <section class="ademas" aria-labelledby="t-ademas">
+    <div class="envoltura">
+      <h2 class="cinta" id="t-ademas">Además de pizza</h2>
+      <div class="bloques" id="bloques"></div>
+    </div>
+  </section>
+
+  <section class="local" aria-labelledby="t-local">
+    <div class="envoltura">
+      <h2 class="cinta" id="t-local">El local</h2>
+      <figure class="cartel" style="margin-block-end:0"><img src="img/cartel.jpg" alt="Cartel redondo de Deli Pizza Beer sobre la pared de ladrillo del local" width="720" height="449" loading="lazy"></figure>
+      <p class="direccion">Rodríguez de Francia esquina Genaro Rodríguez, Itauguá.</p>
+      <dl class="horario">
+        <dt>Domingo a jueves</dt><dd>16:00 a 00:00</dd>
+        <dt>Viernes y sábado</dt><dd>16:00 a 00:30</dd>
+      </dl>
+      <div class="acciones">
+        <a class="boton vacio" href="https://www.google.com/maps/search/?api=1&amp;query=Deli+Pizza+Beer+Itaugu%C3%A1" target="_blank" rel="noopener">Cómo llegar</a>
+        <a class="boton lleno" href="#carta">Armar un pedido</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Muestra · SafaGix · las fotos son de Deli Pizza Beer</footer>
+
+<div class="pedido" id="pedido" aria-live="polite">
+  <div>
+    <p><b id="resumen">0 productos</b><button class="ver" type="button" id="ver">Ver y cambiar el pedido</button></p>
+  </div>
+  <a class="boton" id="wa-pedido" href="#" target="_blank" rel="noopener">Pedir</a>
+</div>
+
+<dialog id="detalle" aria-labelledby="t-detalle">
+  <h2 id="t-detalle">Tu pedido</h2>
+  <ul id="items"></ul>
+  <p class="total"><span>Total según la carta</span><span id="total-d"></span></p>
+  <a class="boton lleno" id="wa-dialogo" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+  <button class="boton vacio cerrar" type="button" id="cerrar">Seguir eligiendo</button>
+</dialog>
+
+<script>
+const WA_NUMERO = "";
+const NEGOCIO = "Deli Pizza Beer";
+
+const TAMANOS = [
+  ["Tradicional","8 porciones"],["Borde","8 porciones"],["Familiar","12 porciones"],["Borde","12 porciones"]
+];
+const P = (a,b,c,d)=>[a,b,c,d].map(n=>n*1000);
+const STD = P(50,60,60,75);
+const PIZZAS = [
+  {id:"clasicos", g:"Sabores clásicos", items:[
+    ["Mozzarella","Salsa casera, queso, orégano y aceitunas verdes",P(30,45,45,65)],
+    ["Pepperoni","Salsa casera, queso, pepperoni, orégano y aceitunas verdes",STD],
+    ["Choclo","Salsa casera, queso, choclo, orégano y aceitunas verdes",P(45,55,55,70),"img/pizza-choclo.jpg"],
+    ["Mexicana","Salsa casera, queso, tomate picado, panceta, morrón verde, ají molido, pimentón dulce, pimienta negra, orégano y aceitunas verdes",STD],
+    ["Jamón y queso","Salsa casera, queso, jamón picado, orégano y aceitunas verdes",P(45,55,60,70)],
+    ["Napolitana","Salsa casera, queso, tomate cherry, albahaca, orégano y aceitunas verdes",STD]
+  ]},
+  {id:"especiales", g:"Sabores especiales", items:[
+    ["Mediterráneo","Salsa casera, queso, champiñón, cebolla morada, palmito, morrón verde y aceitunas verdes",P(55,65,65,80)],
+    ["Portuguesa","Salsa casera, queso, huevo, jamón, cebolla en juliana y aceitunas verdes",STD],
+    ["Ajo y cebolla","Salsa casera, queso, aros de cebolla blanca y morada, ajo picado, aceite de ajo, orégano y aceitunas verdes",STD],
+    ["Pollo con catupiri","Salsa casera, queso, pollo, catupiri, orégano y aceitunas verdes",STD],
+    ["Choclo con catupiri","Salsa casera, queso, choclo, catupiri, orégano y aceitunas verdes",STD],
+    ["Selva negra","Salsa casera, queso, carne picada, rúcula, cebolla morada, semillas de sésamo y de lino, orégano y aceitunas verdes",P(55,65,65,75)],
+    ["Especial champiñón","Salsa casera, queso, champiñones, cebolla morada, albahaca, orégano y aceitunas verdes",STD],
+    ["Española","Salsa casera, queso, cebolla salteada, morrón picado, chorizo picado, orégano y aceitunas verdes",P(55,65,65,75)],
+    ["Especial de la casa","Salsa casera, queso, morrones picados, cebolla salteada, chorizo picado, panceta, catupiri, orégano y aceitunas verdes",STD],
+    ["Palmito","Salsa casera, queso, palmito, orégano y aceitunas verdes",STD],
+    ["5 quesos","Salsa casera, mozzarella, catupiri, queso azul, parmesano, cheddar, orégano y aceitunas verdes",STD],
+    ["Atún","Salsa casera, queso, atún, cebolla en aros, orégano y aceitunas verdes",STD],
+    ["Vegetariana","Salsa casera, queso, tomate, palmitos, morrón rojo, verde y amarillo, cebolla morada, orégano y aceitunas verdes",STD],
+    ["Jalapeño","Salsa casera, queso, ají picante, pimentón dulce, jalapeño, pimienta negra, orégano y aceitunas verdes",STD],
+    ["Amazonas","Salsa casera, queso, chorizo picado, jamón picado, choclo, morrones, cebolla morada, orégano y aceitunas verdes",STD],
+    ["Génova","Salsa casera, queso, morrón verde picado, salsa de ajo, orégano y aceitunas verdes",STD],
+    ["Margarita","Salsa casera, queso, tomate en rodajas, albahaca, orégano, semillas de lino y de sésamo, aceitunas verdes",STD],
+    ["Primavera","Salsa casera, queso, tomate picado, morrones picados, orégano y aceitunas verdes",STD]
+  ]},
+  {id:"premium", g:"Sabores premium", items:[
+    ["Bacon","Salsa casera, queso, bacon, aceitunas y orégano",STD],
+    ["Catupiri","Salsa casera, queso, catupiri, orégano y aceitunas",STD],
+    ["Carbonara","Salsa casera, mozzarella, champiñones, ají en rodajas y perejil",STD],
+    ["Capresse","Salsa casera, mozzarella, tomate en rodajas, catupiri y salsa pesto",STD],
+    ["Americana","Salsa casera, mozzarella, papas fritas y barbacoa",P(55,65,65,80)],
+    ["Pancho","Salsa casera, mozzarella y pancho",P(55,65,65,80)]
+  ]}
+];
+const OTROS = [
+  {g:"Lomitos árabes", foto:"img/lomito-arabe.jpg", alt:"Lomito árabe servido con dos chopps en una mesa de Deli", items:[
+    ["Lomito de pollo","Pollo en trocitos, salsa especial, repollo, jamón, queso y mayonesa",23000],
+    ["Lomito mixto","Pollo y lomito en trocitos, salsa especial, repollo, jamón, queso y mayonesa",25000],
+    ["Lomito de carne","Lomito en trocitos, salsa especial, repollo, jamón, queso y mayonesa",25000],
+    ["Lomito especial","Mixto, carne y pollo, con huevo, cheddar, panceta y repollo",32000]
+  ]},
+  {g:"Hamburguesas", foto:"img/hamburguesa.jpg", alt:"Hamburguesa de Deli con pan de sésamo, huevo y jamón", items:[
+    ["Hamburguesa completa","Pan, carne, queso, huevo, lechuga y mayonesa",15000],
+    ["Hamburguesa extra bacon","Pan, carne, cheddar, jamón, tomate, lechuga, panceta y mayonesa",27000],
+    ["Hamburguesa casera","Doble carne, mayonesa, queso, salsa cheddar y aros de cebolla",30000]
+  ]},
+  {g:"Para tomar", foto:"img/pizza-y-gaseosas.jpg", alt:"Dos vasos de gaseosa con pizza sobre una mesa de madera de Deli", items:[
+    ["Chopp Munich","500 ml",15000],
+    ["Pilsen tubito","269 ml",7000],
+    ["Coca Cola 1,5 litros","Para la mesa",15000],
+    ["Coca Cola 2 litros","Para la mesa",18000]
+  ]}
+];
+
+const gs = n => new Intl.NumberFormat("es-PY").format(n) + " Gs.";
+let tam = 0;
+const pedido = new Map(); // clave -> {nombre, detalle, precio, cant}
+
+const MAS = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
+const LISTO = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+function pintarTamanos(){
+  const c = document.getElementById("opciones");
+  c.innerHTML = TAMANOS.map((t,i)=>`<button type="button" aria-pressed="${i===tam}" data-t="${i}"><b>${t[0]}</b><small>${t[1]}</small></button>`).join("");
+}
+function pintarPizzas(){
+  document.getElementById("listas").innerHTML = PIZZAS.map(gr=>`
+    <div class="grupo" id="${gr.id}"><h3>${gr.g}</h3><ul class="lista">${gr.items.map((it,k)=>{
+      const precio = it[2][tam];
+      return `<li class="fila">${it[3]?`<img class="foto" src="${it[3]}" alt="Pizza de choclo de Deli con aceitunas verdes" width="720" height="537" loading="lazy">`:""}
+        <h4>${it[0]}</h4>
+        <div class="lado"><span class="precio">${gs(precio)}</span>
+          <button class="sumar" type="button" data-p="${gr.id}:${k}" aria-label="Sumar ${it[0]}, ${TAMANOS[tam].join(" ")}, ${gs(precio)}">${MAS}</button></div>
+        <p>${it[1]}</p></li>`;}).join("")}</ul></div>`).join("");
+}
+function pintarOtros(){
+  document.getElementById("bloques").innerHTML = OTROS.map((gr,j)=>`
+    <div class="bloque"><img src="${gr.foto}" alt="${gr.alt}" loading="lazy"><div class="grupo" style="margin-top:0"><h3>${gr.g}</h3><ul class="lista">${gr.items.map((it,k)=>`
+      <li class="fila"><h4>${it[0]}</h4><div class="lado"><span class="precio">${gs(it[2])}</span>
+      <button class="sumar" type="button" data-o="${j}:${k}" aria-label="Sumar ${it[0]}, ${gs(it[2])}">${MAS}</button></div><p>${it[1]}</p></li>`).join("")}</ul></div></div>`).join("");
+}
+
+function sumar(clave,nombre,detalle,precio,boton){
+  const it = pedido.get(clave) || {nombre,detalle,precio,cant:0};
+  it.cant++; pedido.set(clave,it);
+  if(boton){boton.innerHTML=LISTO;boton.classList.add("hecho");setTimeout(()=>{boton.innerHTML=MAS;boton.classList.remove("hecho")},900);}
+  actualizar();
+}
+function texto(){
+  if(!pedido.size) return `Hola ${NEGOCIO}, quiero hacer un pedido. ¿Me pasan la carta vigente?`;
+  let t = `Hola ${NEGOCIO}, quiero pedir:\n`, total = 0;
+  for(const it of pedido.values()){ t += `- ${it.cant} x ${it.nombre}${it.detalle?" ("+it.detalle+")":""}: ${gs(it.precio*it.cant)}\n`; total += it.precio*it.cant; }
+  return t + `Total según la carta: ${gs(total)}\n¿Me confirman el precio y el tiempo de entrega?`;
+}
+const enlace = () => `https://wa.me/${WA_NUMERO}?text=${encodeURIComponent(texto())}`;
+function actualizar(){
+  let cant=0,total=0; for(const it of pedido.values()){cant+=it.cant;total+=it.precio*it.cant;}
+  document.getElementById("resumen").textContent = `${cant} ${cant===1?"producto":"productos"} · ${gs(total)}`;
+  document.getElementById("pedido").classList.toggle("visible",cant>0);
+  document.getElementById("total-d").textContent = gs(total);
+  document.getElementById("items").innerHTML = [...pedido.entries()].map(([k,it])=>`<li><div>${it.nombre}<small>${it.detalle||""} · ${gs(it.precio)}</small></div>
+    <div class="cant"><button type="button" data-menos="${k}" aria-label="Quitar uno de ${it.nombre}">−</button><span>${it.cant}</span><button type="button" data-mas="${k}" aria-label="Sumar uno de ${it.nombre}">+</button></div></li>`).join("");
+  for(const id of ["wa-directo","wa-pedido","wa-dialogo"]) document.getElementById(id).href = enlace();
+  if(!cant && document.getElementById("detalle").open) document.getElementById("detalle").close();
+}
+
+document.addEventListener("click",e=>{
+  const b = e.target.closest("button,a"); if(!b) return;
+  if(b.dataset.t){ tam=+b.dataset.t; pintarTamanos(); pintarPizzas(); return; }
+  if(b.dataset.p){ const [g,k]=b.dataset.p.split(":"); const it=PIZZAS.find(x=>x.id===g).items[+k];
+    sumar(`${b.dataset.p}:${tam}`,`Pizza ${it[0]}`,`${TAMANOS[tam][0]} ${TAMANOS[tam][1]}`,it[2][tam],b); return; }
+  if(b.dataset.o){ const [j,k]=b.dataset.o.split(":").map(Number); const it=OTROS[j].items[k];
+    sumar(`o${j}:${k}`,it[0],"",it[2],b); return; }
+  if(b.dataset.mas){ pedido.get(b.dataset.mas).cant++; actualizar(); return; }
+  if(b.dataset.menos){ const it=pedido.get(b.dataset.menos); if(--it.cant<=0) pedido.delete(b.dataset.menos); actualizar(); return; }
+  if(b.id==="ver") document.getElementById("detalle").showModal();
+  if(b.id==="cerrar") document.getElementById("detalle").close();
+});
+
+// Horario de hoy: viernes y sábado hasta las 00:30
+const d = new Date().getDay();
+document.getElementById("hoy").textContent = (d===5||d===6) ? "16:00 a 00:30" : "16:00 a 00:00";
+
+pintarTamanos(); pintarPizzas(); pintarOtros(); actualizar();
+</script>
+</body>
+</html>
