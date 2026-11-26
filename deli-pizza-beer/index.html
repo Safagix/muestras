@@ -221,12 +221,20 @@ dialog .cerrar{margin-top:.6rem;width:100%}
   <h2 id="t-detalle">Tu pedido</h2>
   <ul id="items"></ul>
   <p class="total"><span>Total según la carta</span><span id="total-d"></span></p>
+  <fieldset class="datos-pedido" style="border:0;padding:0;margin:12px 0;display:grid;gap:8px">
+    <legend style="font-weight:700;margin-bottom:6px">¿Cómo lo querés?</legend>
+    <label><input type="radio" name="entrega" value="Retiro" checked> Retiro en el local</label>
+    <label><input type="radio" name="entrega" value="Delivery"> Delivery (te mando la ubicación)</label>
+    <label>Tu nombre <input id="nombre-cliente" type="text" autocomplete="name" style="width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;font:inherit"></label>
+    <label><input type="radio" name="pago" value="Efectivo" checked> Efectivo</label>
+    <label><input type="radio" name="pago" value="Transferencia"> Transferencia</label>
+  </fieldset>
   <a class="boton lleno" id="wa-dialogo" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
   <button class="boton vacio cerrar" type="button" id="cerrar">Seguir eligiendo</button>
 </dialog>
 
 <script>
-const WA_NUMERO = "";
+const WA_NUMERO = "595982979001";
 const NEGOCIO = "Deli Pizza Beer";
 
 const TAMANOS = [
@@ -330,7 +338,11 @@ function texto(){
   if(!pedido.size) return `Hola ${NEGOCIO}, quiero hacer un pedido. ¿Me pasan la carta vigente?`;
   let t = `Hola ${NEGOCIO}, quiero pedir:\n`, total = 0;
   for(const it of pedido.values()){ t += `- ${it.cant} x ${it.nombre}${it.detalle?" ("+it.detalle+")":""}: ${gs(it.precio*it.cant)}\n`; total += it.precio*it.cant; }
-  return t + `Total según la carta: ${gs(total)}\n¿Me confirman el precio y el tiempo de entrega?`;
+  const val = n => (document.querySelector(`input[name="${n}"]:checked`)||{}).value || "";
+  const nom = (document.getElementById("nombre-cliente")||{}).value || "";
+  t += `Total según la carta: ${gs(total)}\n${val("entrega")}${val("entrega")==="Delivery"?" (te mando la ubicación)":""}\n`;
+  if(nom.trim()) t += `Nombre: ${nom.trim()}\n`;
+  return t + `Pago: ${val("pago")}\n¿Me confirman el precio y el tiempo de entrega?`;
 }
 const enlace = () => `https://wa.me/${WA_NUMERO}?text=${encodeURIComponent(texto())}`;
 function actualizar(){
@@ -353,7 +365,8 @@ document.addEventListener("click",e=>{
     sumar(`o${j}:${k}`,it[0],"",it[2],b); return; }
   if(b.dataset.mas){ pedido.get(b.dataset.mas).cant++; actualizar(); return; }
   if(b.dataset.menos){ const it=pedido.get(b.dataset.menos); if(--it.cant<=0) pedido.delete(b.dataset.menos); actualizar(); return; }
-  if(b.id==="ver") document.getElementById("detalle").showModal();
+  if(b.id==="wa-dialogo"){ b.href = enlace(); return; } // toma retiro/delivery, nombre y pago del momento
+  if(b.id==="ver"||b.id==="wa-pedido"){ if(b.id==="wa-pedido"&&pedido.size){ e.preventDefault(); } document.getElementById("detalle").showModal(); }
   if(b.id==="cerrar") document.getElementById("detalle").close();
 });
 
