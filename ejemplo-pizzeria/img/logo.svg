@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 470" width="600" height="470">
+  <!-- Logo de ejemplo de SafaGix: pizzería inventada «Tres Leños». Dos colores: ladrillo y mostaza. -->
+  <path fill="#E2A12B" fill-rule="evenodd" d="M300 34 C 334 76, 366 98, 360 144 C 356 172, 332 188, 300 188 C 268 188, 244 170, 242 144 C 239 114, 260 100, 268 74 C 280 94, 284 106, 292 110 C 290 82, 292 58, 300 34 Z M302 116 C 316 132, 326 144, 322 160 C 319 172, 310 178, 300 178 C 289 178, 280 170, 280 158 C 280 144, 292 134, 302 116 Z"/>
+  <g fill="#A3311F">
+    <circle cx="300" cy="222" r="36"/><circle cx="260" cy="288" r="36"/><circle cx="340" cy="288" r="36"/>
+  </g>
+  <g fill="none" stroke="#E2A12B" stroke-width="5">
+    <circle cx="300" cy="222" r="21"/><circle cx="300" cy="222" r="8"/>
+    <circle cx="260" cy="288" r="21"/><circle cx="260" cy="288" r="8"/>
+    <circle cx="340" cy="288" r="21"/><circle cx="340" cy="288" r="8"/>
+  </g>
+  <text x="300" y="384" text-anchor="middle" font-family="Roboto Slab" font-weight="800" font-size="74" letter-spacing="1" fill="#A3311F">TRES LEÑOS</text>
+  <g fill="#A3311F"><text x="300" y="436" text-anchor="middle" font-family="Roboto Slab" font-weight="600" font-size="21" letter-spacing="6">PIZZERÍA A LA LEÑA</text></g>
+</svg>

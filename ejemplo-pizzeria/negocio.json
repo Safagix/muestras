@@ -1,0 +1,47 @@
+{
+ "_nota": "Negocio INVENTADO para mostrar el catálogo a prospectos. Nombre chequeado el 27-11-2026 en Google Maps (Gran Asunción) y en la web: no hay una pizzería «Tres Leños». Logo propio (img/logo.svg). Fotos de Unsplash (creditos.md).",
+ "nombre": "Tres Leños",
+ "corto": "TRES LEÑOS",
+ "rubro": "pizzeria",
+ "logo": "img/logo.png",
+ "fuentes": {"titulo": "Roboto Slab", "texto": "Work Sans", "mano": "Caveat", "mano_italica": false, "mano_pesos": "500"},
+ "_fuentes_por_que": "Roboto Slab es la letra del logo; Work Sans, limpia para los textos; Caveat, como la tiza de una pizarra de barrio.",
+ "franja": "Ejemplo de catálogo hecho por SafaGix",
+ "titulo_pagina": "Ejemplo de catálogo · Pedí por WhatsApp",
+ "descripcion": "Catálogo de ejemplo hecho por SafaGix: una pizzería a la leña inventada. Elegí tus pizzas y armá el pedido por WhatsApp.",
+ "_lema_por_que": "Sin lema: el logo ya dice «Pizzería a la leña» (revisión a ciegas, ronda 1).",
+ "palabra_grande": "A LA LEÑA",
+ "linea_portada": "Martes a domingo de 18:30 a 23:30 · envío a domicilio o retiro",
+ "pestana_destacados": "Las que más salen",
+ "destacados": [
+  {"producto": "Especial de la casa", "volanta": "La de la casa", "frase": "jamón, salame y cebolla morada"},
+  {"producto": "Pepperoni", "volanta": "La favorita", "frase": "bien doradita en el horno"},
+  {"producto": "Muzzarella", "volanta": "La de siempre", "frase": "con aceitunas y morrón"}
+ ],
+ "secciones": [
+  {"id": "clasicas", "titulo": "Clásicas", "sub": "Masa estirada a mano y horneada a la leña. En mediana o grande.", "productos": [
+   {"n": "Muzzarella", "d": "Salsa de tomate, muzzarella, aceitunas negras, morrón verde y orégano.", "img": "img/muzzarella.webp", "precios": [["Mediana", 45000], ["Grande", 60000]]},
+   {"n": "Margarita", "d": "Salsa de tomate, muzzarella fresca en trozos y hojas de albahaca.", "img": "img/napolitana.webp", "precios": [["Mediana", 50000], ["Grande", 65000]]},
+   {"n": "Pepperoni", "d": "Salsa de tomate, muzzarella y pepperoni.", "img": "img/pepperoni.webp", "precios": [["Mediana", 55000], ["Grande", 72000]]},
+   {"n": "Calabresa", "d": "Salsa de tomate, muzzarella, longaniza en rodajas, tomate y aceitunas.", "img": "img/calabresa.webp", "precios": [["Mediana", 55000], ["Grande", 72000]]}
+  ]},
+  {"id": "casa", "titulo": "De la casa", "sub": "Las que armamos nosotros.", "productos": [
+   {"n": "Especial de la casa", "d": "Salsa de tomate, muzzarella, jamón, salame, cebolla morada y tomate.", "img": "img/especial.webp", "precios": [["Mediana", 62000], ["Grande", 80000]]},
+   {"n": "Jamón y champiñones", "d": "Salsa de tomate, muzzarella, jamón cocido y champiñones frescos.", "img": "img/jamon-champinones.webp", "precios": [["Mediana", 58000], ["Grande", 75000]]},
+   {"n": "Pollo a la barbacoa", "d": "Muzzarella, pollo desmenuzado, salsa barbacoa y rúcula fresca.", "img": "img/pollo-barbacoa.webp", "precios": [["Mediana", 60000], ["Grande", 78000]]}
+  ]},
+  {"id": "mitad", "titulo": "Mitad y mitad", "pestana": "Mitad y mitad", "volanta": "Dos gustos", "oscura": true, "sub": "Dos gustos en una sola pizza. Contanos cuáles en la nota del pedido.", "productos": [
+   {"n": "Mitad y mitad", "precios": [["Mediana", 58000], ["Grande", 75000]], "a_confirmar": "los dos gustos"}
+  ]},
+  {"id": "bebidas", "titulo": "Bebidas", "productos": [
+   {"n": "Gaseosa 1,5 L", "d": "Coca-Cola, Fanta o Sprite.", "precios": [[null, 15000]]},
+   {"n": "Agua mineral 500 ml", "precios": [[null, 6000]]}
+  ]}
+ ],
+ "horario": [["Martes a domingo", "18:30 a 23:30"], ["Lunes", "Cerrado"], ["Entrega", "Envío a domicilio o retiro en el local"]],
+ "entrega": ["Envío a domicilio", "Retiro en el local"],
+ "pagos": ["Efectivo", "Transferencia", "QR o tarjeta"],
+ "nota_ejemplo": "Ej.: mitad Pepperoni y mitad Margarita",
+ "cierre_mensaje": "(Pedido de prueba: este catálogo es un ejemplo de SafaGix.)",
+ "pie": "Tres Leños es una pizzería inventada para mostrar cómo funciona el catálogo: nombre, precios y pedidos son de ejemplo. Fotos de Unsplash. Hecho por SafaGix."
+}
