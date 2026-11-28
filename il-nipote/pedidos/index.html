@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IL Nipote Di Venini · Pizza napolitana · Pedí por WhatsApp</title>
+<meta name="description" content="Pizza 100 % artesanal con receta de familia italiana. Elegí tus pizzas y mandá el pedido por WhatsApp. Envío a domicilio o retiro.">
+<meta name="theme-color" content="#F5F1E6" id="tema">
+<script>
+// Si ya abrió el horno en esta visita, va directo a la carta (sin parpadeo).
+try { if (sessionStorage.getItem("nipote-horno") === "abierto") document.documentElement.classList.add("directo"); } catch {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Josefin+Sans:wght@600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Paleta medida: tinta y blanco del logo, gris y oro de la carta, rojo tomate y verde albahaca de sus fotos */
+  --bg:color-mix(in oklab,#6E6E6E 9%,#FFFFFF); --card:#FFFFFF; --txt:#030303; --txt-2:#5B5B5B; --linea:color-mix(in oklab,#6E6E6E 22%,#FFFFFF);
+  --rojo:#A71F14; --rojo-h:color-mix(in oklab,#A71F14 85%,#000); --on-rojo:#FFFFFF; --verde:#2B5F34; --oro:#828256;
+  --f:"Figtree", ui-sans-serif, system-ui, sans-serif; --curva:cubic-bezier(.23,1,.32,1); --sale:cubic-bezier(.23,1,.32,1); --rueda:cubic-bezier(.65,0,.35,1);
+  --sombra:0 1px 2px rgba(23,20,15,.06), 0 8px 24px -12px rgba(23,20,15,.22);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:64px;scroll-padding-bottom:110px}
+body{background:var(--bg);color:var(--txt);font:400 16px/1.5 var(--f);overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p{text-wrap:pretty}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--rojo);outline-offset:2px;border-radius:8px}
+.ico{width:20px;height:20px;flex:none}
+.app{max-width:640px;margin-inline:auto;background:var(--bg);min-height:100dvh;padding-bottom:110px}
+
+.rotulo{font-size:12px;color:var(--txt-2);text-align:center;padding:7px 16px;background:var(--card);border-bottom:1px solid var(--linea)}
+.portada img{width:100%;aspect-ratio:2/1;object-fit:cover}
+.tienda{background:var(--card);margin:-28px 12px 0;position:relative;border-radius:18px;padding:18px 16px 16px;box-shadow:var(--sombra)}
+.cabeza{display:flex;gap:12px;align-items:center}
+.logo{width:76px;height:76px;border-radius:16px;background:#fff;object-fit:cover;flex:none;margin-top:-44px;border:3px solid var(--card);box-shadow:0 2px 10px rgba(3,3,3,.14)}
+.tienda h1:focus:not(:focus-visible){outline:none}
+.tienda h1{font-size:22px;line-height:1.15;font-weight:800}
+.rubro{font-size:14px;color:var(--txt-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 12px;border-radius:999px;background:var(--bg);font-size:14px;font-weight:600}
+.chip svg{width:15px;height:15px}
+.chip .est{color:var(--oro)}
+.estado.ab{color:var(--verde)}
+.estado.ce{color:var(--txt-2)}
+.punto{width:8px;height:8px;border-radius:50%;background:currentColor}
+.aviso{font-size:14px;color:var(--txt-2);margin-top:12px;line-height:1.45}
+
+.tabs{position:sticky;top:0;z-index:20;background:color-mix(in oklab,var(--bg) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;gap:6px;padding:10px 12px;margin-top:8px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid transparent;transition:border-color 200ms}
+.tabs.pegada{border-bottom-color:var(--linea)}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{flex:none;min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;color:var(--txt-2);background:var(--card);border:1px solid var(--linea)}
+.tabs a[aria-current=true]{background:var(--txt);color:#fff;border-color:var(--txt)}
+
+.bloque{margin:12px 12px 0;scroll-margin-top:64px}
+.bloque h2{font-size:20px;font-weight:800;padding:8px 4px 4px}
+.bloque .sub{font-size:14px;color:var(--txt-2);padding:0 4px 10px}
+.lista{background:var(--card);border-radius:16px;overflow:hidden}
+.prod{display:grid;grid-template-columns:1fr 112px;gap:14px;padding:16px;border-bottom:1px solid var(--linea);align-items:start}
+.prod:last-child{border-bottom:0}
+.prod h3{font-size:17px;font-weight:700;line-height:1.25}
+.prod p{font-size:14px;color:var(--txt-2);line-height:1.4;margin-top:4px}
+.precio{display:block;font-weight:700;font-size:16px;margin-top:8px;font-variant-numeric:tabular-nums}
+.foto{position:relative;width:112px;height:112px}
+.mini{display:block;width:112px;height:112px;border-radius:12px;overflow:hidden}
+.mini img{width:100%;height:100%;object-fit:cover;transform:scale(1.03)}
+.foto .cant{position:absolute;right:-6px;bottom:-8px}
+.prod.con{background:color-mix(in oklab,#A71F14 5%,#FFFFFF)}
+.prod.sin{grid-template-columns:1fr}
+.tams{display:grid;gap:8px;margin-top:10px}
+.tam{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px}
+.tam-n{font-size:14px;color:var(--txt-2)}
+.tam-n b{display:block;color:var(--txt);font-size:16px;font-variant-numeric:tabular-nums}
+.tam .cant{box-shadow:none;border:1px solid var(--linea)}
+.tam .cant.activa{border-color:var(--rojo)}
+.beb{grid-template-columns:1fr auto;align-items:center}
+.beb .precio{margin-top:2px;font-weight:600;color:var(--txt-2)}
+
+.cant{display:inline-flex;align-items:center;background:var(--card);border-radius:999px;box-shadow:0 2px 8px rgba(23,20,15,.18);padding:0}
+.cant button{width:44px;height:44px;border-radius:50%;border:0;background:transparent;font-weight:700;font-size:22px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:transform 140ms var(--curva)}
+.cant button:active{transform:scale(.9)}
+.cant .mas{color:var(--rojo)}
+.cant output{min-width:20px;text-align:center;font-weight:800;font-variant-numeric:tabular-nums}
+.cant:not(.activa) .menos,.cant:not(.activa) output{display:none}
+.cant.activa{background:var(--rojo);color:var(--on-rojo)}
+.cant.activa .mas{color:var(--on-rojo)}
+.beb .cant{box-shadow:none;border:1px solid var(--linea)}
+.beb .cant.activa{border-color:var(--rojo)}
+
+.info{background:var(--card);border-radius:16px;padding:4px 16px}
+.info div{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--linea)}
+.info div:last-child{border-bottom:0}
+.info .ico{color:var(--txt-2);margin-top:2px}
+.info b{display:block;font-size:15px}
+.info span{font-size:14px;color:var(--txt-2)}
+.pie{font-size:13px;color:var(--txt-2);padding:16px 16px 0;line-height:1.45}
+
+.carrito{position:fixed;inset:auto 0 0 0;z-index:30;padding:10px 12px calc(10px + env(safe-area-inset-bottom));pointer-events:none;visibility:hidden;transform:translateY(120%);transition:transform 280ms var(--curva),visibility 0s 280ms}
+.carrito.ver{transform:none;pointer-events:auto;visibility:visible;transition:transform 280ms var(--curva)}
+.carrito button{width:min(616px,100%);margin-inline:auto;display:flex;align-items:center;gap:12px;min-height:56px;padding:0 18px;border:0;border-radius:16px;background:var(--rojo);color:var(--on-rojo);font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 10px 30px -10px rgba(167,31,20,.6)}
+.carrito button:hover{background:var(--rojo-h)}
+.carrito .n{min-width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.2);display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.carrito .t{margin-left:auto;font-variant-numeric:tabular-nums}
+
+/* Hoja del pedido */
+.hoja{margin:auto auto 0;width:100%;max-width:640px;max-height:92dvh;border:0;padding:0;border-radius:22px 22px 0 0;background:var(--card);color:var(--txt);overflow:hidden}
+.hoja[open]{display:flex;flex-direction:column;animation:hoja 320ms var(--curva)}
+.hoja::backdrop{background:rgba(23,20,15,.45)}
+@keyframes hoja{from{transform:translateY(100%)}to{transform:none}}
+.h-cab{display:flex;align-items:center;justify-content:space-between;padding:8px 8px 8px 18px;border-bottom:1px solid var(--linea)}
+.h-cab::before{content:"";position:absolute;left:50%;top:6px;width:40px;height:4px;border-radius:4px;background:var(--linea);transform:translateX(-50%)}
+.h-cab h2{font-size:19px;font-weight:800;padding-top:8px}
+.cerrar{width:44px;height:44px;border:0;background:transparent;border-radius:50%;cursor:pointer;display:grid;place-items:center;margin-top:6px}
+.cerrar:hover{background:var(--bg)}
+.h-cuerpo{overflow-y:auto;padding:6px 18px 18px;display:grid;gap:18px;overscroll-behavior:contain}
+.items .it{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--linea)}
+.items .it[hidden]{display:none}
+.items .it span{flex:1;font-weight:600;font-size:15px}
+.items .it small{display:block;font-weight:500;color:var(--txt-2);font-variant-numeric:tabular-nums}
+.items .cant{box-shadow:none;border:1px solid var(--linea);background:var(--card);color:var(--txt)}
+.items .cant .menos,.items .cant output{display:grid}
+.items .cant .mas{color:var(--rojo)}
+.vacio{color:var(--txt-2);font-size:15px;padding:10px 0}
+fieldset{border:0;padding:0;min-width:0;display:grid;gap:8px}
+legend,.campo label{font-weight:700;font-size:15px;padding:0;margin-bottom:2px}
+.seg{display:flex;background:var(--bg);border-radius:12px;padding:4px;gap:4px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{flex:1;min-height:44px;display:grid;place-items:center;text-align:center;border-radius:9px;font-weight:600;font-size:14.5px;line-height:1.2;cursor:pointer;padding:4px 6px;color:var(--txt-2)}
+.seg input:checked + label{background:var(--card);color:var(--txt);box-shadow:0 1px 4px rgba(23,20,15,.16)}
+.seg input:focus-visible + label{outline:2px solid var(--rojo);outline-offset:1px}
+.campo{display:grid;gap:6px}
+.campo[hidden]{display:none}
+.op{font-weight:400;color:var(--txt-2)}
+input:not([type=radio]){font:400 16px/1.4 var(--f);color:var(--txt);background:var(--card);border:1.5px solid #8E8983;border-radius:12px;padding:12px 14px;min-height:50px;width:100%}
+input:focus{border-color:var(--txt);outline:none}
+input:focus-visible{outline:2px solid var(--rojo);outline-offset:1px}
+input[aria-invalid=true]{border-color:var(--rojo)}
+.err{font-size:14px;color:var(--rojo);font-weight:600;min-height:1em}
+.h-pie{border-top:1px solid var(--linea);padding:12px 18px calc(12px + env(safe-area-inset-bottom))}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:18px;font-variant-numeric:tabular-nums;margin-bottom:10px}
+.tot small{display:block;font-weight:500;font-size:13px;color:var(--txt-2)}
+.enviar{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border:0;border-radius:14px;background:var(--rojo);color:var(--on-rojo);font-weight:700;font-size:16px;cursor:pointer;transition:transform 140ms var(--curva)}
+.enviar:hover{background:var(--rojo-h)}
+.enviar:active{transform:scale(.98)}
+
+/* Entrada: el horno cerrado de su catálogo (papel y negro del logo, ocre de su carta). Al abrirlo, la carta sube desde abajo. */
+.horno{--marca:#15120F;--papel:#F5F1E6;--detalle:#A8924E;
+  position:fixed;inset:0;z-index:40;overflow-y:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  padding:calc(24px + env(safe-area-inset-top)) 20px calc(24px + env(safe-area-inset-bottom));text-align:center;color:var(--marca);
+  background:var(--papel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M0 .5H26M.5 0V26' fill='none' stroke='%23000' stroke-opacity='.11'/%3E%3C/svg%3E") 0 0/26px 26px}
+.directo .horno,.horno[hidden]{display:none}
+html:not(.directo) body:has(.horno:not([hidden])){overflow:hidden}
+.horno :focus-visible{outline:3px solid var(--marca);outline-offset:3px;border-radius:6px}
+.horno .h-logo{width:auto;max-width:min(220px,58vw);max-height:120px;mix-blend-mode:multiply}
+.horno .cerrado{font:italic 500 22px/1.2 "Cormorant Garamond",Georgia,serif;margin-top:14px}
+.horno .orden{font:700 clamp(30px,8.5vw,40px)/1 "Josefin Sans",system-ui,sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.objeto{width:min(330px,86vw);margin-top:10px;padding:0;border:0;background:none;border-radius:20px;cursor:pointer;touch-action:manipulation}
+.objeto svg{display:block;width:100%;height:auto;overflow:visible;transition:transform .16s var(--sale)}
+.objeto:active svg{transform:scale(.98)}
+.obj .l{fill:var(--papel);stroke:var(--marca);stroke-width:5;stroke-linejoin:round;stroke-linecap:round}
+.obj .t{fill:none;stroke:var(--marca);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.obj .r{fill:var(--marca)} .obj .p{fill:var(--papel)}
+.obj .lama{stroke:color-mix(in srgb,var(--papel) 28%,var(--marca));stroke-width:2.5}
+.obj .nombre{fill:var(--marca);font:700 17px "Josefin Sans",system-ui,sans-serif;letter-spacing:4px}
+.puerta{transition:transform .32s var(--rueda)}
+.objeto[aria-expanded="true"] .puerta{transform:translateY(-118px)}
+.chispa{opacity:0}
+.objeto[aria-expanded="true"] .chispa{animation:chispa .5s .2s var(--sale) both}
+@keyframes chispa{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pista{font:italic 600 20px/1 "Cormorant Garamond",Georgia,serif;display:inline-flex;align-items:center;gap:8px;margin-top:4px}
+.pista svg{width:16px;height:16px}
+.ver-carta{margin-top:10px;min-height:44px;padding:0 16px;border-radius:12px;border:0;background:transparent;color:var(--marca);font:600 16px/1 var(--f);text-decoration:underline;text-underline-offset:4px;cursor:pointer;transition:background .2s var(--sale),color .2s var(--sale),transform .14s var(--sale)}
+.ver-carta:hover{background:var(--marca);color:var(--papel)}
+.ver-carta:active{transform:scale(.97)}
+.horno .pie-h{font-size:14px;color:var(--txt-2);max-width:32ch;margin-top:6px}
+.horno.fuera{opacity:0;transition:opacity .15s linear}
+#pagina{background:var(--bg)}
+#pagina.sube{position:relative;z-index:50}
+/* Lo que se mueve dentro de la carta, como en el catálogo del horno */
+.tabs a{transition:background .2s var(--sale),color .2s var(--sale),border-color .2s var(--sale),transform .12s var(--sale)}
+.tabs a:active{transform:scale(.97)}
+.prod{transition:background .25s var(--sale)}
+.cant{transition:background .18s var(--sale),color .18s var(--sale),border-color .18s var(--sale)}
+@media (hover:hover){.tabs a:not([aria-current=true]):hover{border-color:var(--txt-2)}}
+/* Al agregar: el contador del carrito late una vez */
+.carrito .n.late{animation:late .26s cubic-bezier(.23,1,.32,1)}
+@keyframes late{40%{transform:scale(1.25)}}
+.cant.activa.pop{animation:pop .18s cubic-bezier(.23,1,.32,1)}
+@keyframes pop{50%{transform:scale(1.06)}}
+
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.hoja[open]{animation:none}.carrito,.cant button,.enviar{transition:none}
+  .puerta,.objeto svg,.ver-carta{transition:none}.objeto[aria-expanded="true"] .chispa{animation:none;opacity:1}
+  .carrito .n.late,.cant.activa.pop{animation:none}.tabs a,.prod,.cant{transition:none}}
+@media (min-width:700px){
+  .hoja{margin:auto;border-radius:22px;max-height:86dvh}
+  .portada img{border-radius:0 0 22px 22px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 19.5 5.3 16A8 8 0 1 1 8 18.7L4 19.5Z"/></symbol>
+  <symbol id="i-estrella" viewBox="0 0 24 24"><path fill="currentColor" d="m12 3.2 2.6 5.5 6 .7-4.4 4.1 1.1 5.9L12 16.5l-5.3 2.9 1.1-5.9L3.4 9.4l6-.7L12 3.2Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 21s7-6.1 7-11.5a7 7 0 1 0-14 0C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-reloj" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-moto" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="16" r="3"/><circle cx="18" cy="16" r="3"/><path d="M9 16h5l3-6h-4M14 6h2l1 4M6 13l3-3h3"/></g></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-arriba" viewBox="0 0 16 16"><path d="M8 14V2M3 7l5-5 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<section class="horno" id="horno" aria-label="Entrada">
+  <img class="h-logo" src="../img-marca/logo-negro.png" alt="IL Nipote Di Venini, pizza napoletana" width="461" height="189">
+  <p class="cerrado">el horno está cerrado…</p>
+  <p class="orden">¡Abrilo!</p>
+  <button class="objeto" id="objeto" type="button" aria-expanded="false" aria-controls="pagina" aria-label="Abrir el horno y ver la carta">
+    <svg class="obj" viewBox="0 0 360 300" aria-hidden="true">
+      <defs><clipPath id="boca-horno"><path d="M112 222V178c0-38 30-62 68-62s68 24 68 62v44z"/></clipPath></defs>
+      <path class="l" d="M166 66V26h28v40"/><path class="t" style="stroke-width:5" d="M160 26h40"/>
+      <path class="l" d="M38 230V178C38 104 102 62 180 62s142 42 142 116v52"/>
+      <path class="t" d="M70 128l14 8M96 98l10 12M136 78l4 14M224 78l-4 14M264 98l-10 12M290 128l-14 8M58 172h14M288 172h14M78 206h12M270 206h12"/>
+      <path class="t" style="stroke-width:5" d="M98 222V178c0-48 38-76 82-76s82 28 82 76v44"/>
+      <path class="t" d="M107 146l12 6M126 120l9 10M156 106l3 12M204 106l-3 12M234 120l-9 10M253 146l-12 6"/>
+      <g clip-path="url(#boca-horno)">
+        <rect x="100" y="110" width="160" height="120" fill="#2A1D14"/>
+        <path class="chispa" d="M200 222c-10-8-14-22-6-34 2 8 8 10 10 4 4-12-2-20 8-30 0 12 12 18 10 34-2 14-12 22-22 26z" fill="#D9622B"/>
+        <path class="chispa" d="M214 222c-6-6-8-14-2-22 2 6 6 6 8 2 2 8 6 12 2 20z" fill="#F2A33A"/>
+        <path class="chispa" d="M232 222c-6-10-4-22 4-30 0 10 8 14 6 30z" fill="#F2A33A"/>
+        <path d="M118 222l20-14" stroke="#C9A86A" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="160" cy="206" rx="36" ry="10" fill="#E9C98E" stroke="#C9A86A" stroke-width="4"/>
+        <ellipse cx="160" cy="205" rx="27" ry="6.5" fill="#B8361F"/>
+        <circle cx="150" cy="204" r="3.5" fill="#F5F1E6"/><circle cx="168" cy="206" r="3.5" fill="#F5F1E6"/><circle cx="160" cy="202" r="3" fill="#F5F1E6"/>
+        <path d="M156 207l5-3M172 203l4 2" stroke="#3F6B2A" stroke-width="3" stroke-linecap="round"/>
+        <g class="puerta"><rect class="r" x="100" y="110" width="160" height="120"/><path class="lama" d="M104 142h152M104 158h152M104 174h152M104 190h152M104 206h152"/><rect class="p" x="160" y="208" width="40" height="8" rx="4"/></g>
+      </g>
+      <path class="t" style="stroke-width:5" d="M112 222V178c0-38 30-62 68-62s68 24 68 62v44"/>
+      <rect class="l" x="22" y="222" width="316" height="40" rx="6"/>
+      <text class="nombre" x="180" y="250" text-anchor="middle">IL NIPOTE</text>
+      <g class="l" style="stroke-width:4.5"><circle cx="72" cy="278" r="14"/><circle cx="102" cy="278" r="14"/><circle cx="258" cy="278" r="14"/><circle cx="288" cy="278" r="14"/></g>
+      <g class="r"><circle cx="72" cy="278" r="4"/><circle cx="102" cy="278" r="4"/><circle cx="258" cy="278" r="4"/><circle cx="288" cy="278" r="4"/></g>
+    </svg>
+  </button>
+  <p class="pista" aria-hidden="true"><svg><use href="#i-arriba"/></svg>tocá la puerta del horno</p>
+  <button class="ver-carta" id="ver-carta" type="button">Ver la carta</button>
+  <p class="pie-h">Jueves a domingo de 18:00 a 23:30 · envío a domicilio o retiro</p>
+</section>
+
+<div id="pagina">
+<div class="app">
+  <header>
+    <div class="portada"><img src="../img-marca/portada.webp" alt="Pizza en la pala, frente al fuego del horno" width="640" height="360" fetchpriority="high"></div>
+    <div class="tienda">
+      <div class="cabeza">
+        <img class="logo" src="../img-marca/logo-cuadro.webp" alt="" width="240" height="240">
+        <div><h1 tabindex="-1">IL Nipote Di Venini</h1><p class="rubro">Pizza napolitana · solo envíos y retiro</p></div>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg class="est" aria-hidden="true"><use href="#i-estrella"/></svg>5,0 · 44 reseñas en Google</span>
+        <span class="chip estado" id="estado"><span class="punto" aria-hidden="true"></span><span id="estado-t">Jueves a domingo de 18:00 a 23:30</span></span>
+      </div>
+      <p class="aviso">Pedí directo por WhatsApp: elegís tus pizzas, si te la llevamos o la retirás en la cocina, y cómo pagás. Te llega todo armado en un solo mensaje.</p>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs" aria-label="Categorías">
+    <a href="#pizzas" aria-current="true">Pizzas</a>
+    <a href="#bebidas">Bebidas</a>
+    <a href="#datos">Horario y entrega</a>
+  </nav>
+
+  <main>
+    <section class="bloque" id="pizzas" aria-labelledby="t-pizzas">
+      <h2 id="t-pizzas">Pizzas</h2>
+      <p class="sub">Pizza 100 % artesanal con receta de familia italiana. Cada una en mediana o personal.</p>
+      <div class="lista" id="l-pizzas"></div>
+    </section>
+    <section class="bloque" id="bebidas" aria-labelledby="t-bebidas">
+      <h2 id="t-bebidas">Bebidas</h2>
+      <div class="lista" id="l-bebidas"></div>
+    </section>
+    <section class="bloque" id="datos" aria-labelledby="t-datos">
+      <h2 id="t-datos">Horario y entrega</h2>
+      <div class="info">
+        <div><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg><p><b>Jueves a domingo de 18:00 a 23:30</b><span>Lunes, martes y miércoles cerrado</span></p></div>
+        <div><svg class="ico" aria-hidden="true"><use href="#i-moto"/></svg><p><b>Envío a domicilio o retiro</b><span>Costo del envío a confirmar</span></p></div>
+        <div><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><p><b>Cocina sobre 19 de Enero, Lambaré</b><span>Solo envíos y retiro · @veniniparaguay</span></p></div>
+      </div>
+    </section>
+    <p class="pie">«Pizza 100 % artesanal con receta de familia italiana». El costo del envío te lo confirmamos por WhatsApp junto con el tiempo de espera.</p>
+  </main>
+</div>
+</div>
+
+<div class="carrito" id="carrito">
+  <button type="button" id="abrir" aria-haspopup="dialog"><span class="n" id="c-n">0</span><span>Ver pedido</span><span class="t" id="c-t">Gs. 0</span></button>
+</div>
+
+<dialog class="hoja" id="hoja" aria-labelledby="t-hoja">
+  <div class="h-cab"><h2 id="t-hoja">Tu pedido</h2><button type="button" class="cerrar" id="cerrar" aria-label="Cerrar"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+  <form id="form" novalidate class="h-cuerpo">
+    <div class="items" id="items"></div>
+    <fieldset>
+      <legend>¿Cómo lo recibís?</legend>
+      <div class="seg">
+        <input type="radio" name="entrega" id="en1" value="Envío a domicilio" checked><label for="en1">Envío a domicilio</label>
+        <input type="radio" name="entrega" id="en2" value="Retiro en la cocina"><label for="en2">Retiro en la cocina</label>
+      </div>
+    </fieldset>
+    <div class="campo" id="campo-dir">
+      <label for="dir">Dirección</label>
+      <input id="dir" name="dir" autocomplete="street-address" placeholder="Calle, número y una referencia" aria-describedby="e-dir">
+      <span class="err" id="e-dir" aria-live="polite"></span>
+    </div>
+    <fieldset>
+      <legend>¿Cómo pagás?</legend>
+      <div class="seg">
+        <input type="radio" name="pago" id="pa1" value="Efectivo" checked><label for="pa1">Efectivo</label>
+        <input type="radio" name="pago" id="pa2" value="Transferencia"><label for="pa2">Transferencia</label>
+        <input type="radio" name="pago" id="pa3" value="QR o tarjeta"><label for="pa3">QR o tarjeta</label>
+      </div>
+    </fieldset>
+    <div class="campo">
+      <label for="nombre">Tu nombre</label>
+      <input id="nombre" name="nombre" autocomplete="given-name" placeholder="Ej.: Marcos">
+    </div>
+    <div class="campo">
+      <label for="nota">Algo más <span class="op">(opcional)</span></label>
+      <input id="nota" name="nota" placeholder="Ej.: la Diavola sin jalapeño">
+    </div>
+  </form>
+  <div class="h-pie">
+    <div class="tot"><span><span id="t-label">Total</span><small id="t-envio">más el envío, a confirmar</small></span><span id="h-t">Gs. 0</span></div>
+    <span class="err" id="e-cart" aria-live="polite"></span>
+    <button class="enviar" type="submit" form="form"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>Enviar pedido por WhatsApp</button>
+  </div>
+</dialog>
+
+<script>
+const WA = "595994634252";
+const wa = t => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const gs = n => "Gs. " + n.toLocaleString("es-PY");
+// Carta del local (01_carta.jpg): cada pizza en mediana y personal.
+const pizzas = [
+  {n:"Margherita Clásica", d:"Puré de tomates italianos, parmigiano reggiano, mozzarella fior di latte, albahaca fresca y aceite de oliva extra virgen.", m:60000, p:30000, img:"margherita"},
+  {n:"Diavola", d:"Puré de tomates italianos, mozzarella fior di latte, salame picante tipo pepperoni, chile jalapeño, albahaca fresca, parmigiano reggiano y aceite de oliva extra virgen.", m:65000, p:32000, img:"diavola"},
+  {n:"Pesto e Pomodorini", d:"Puré de tomates italianos, mozzarella fior di latte, tomates cherry, pesto de la casa, albahaca fresca y parmigiano reggiano.", m:60000, p:30000, img:"pesto-e-pomodorini"},
+  {n:"4 Formaggi", d:"Base bianca, mozzarella fior di latte, queso azul, queso Pyo, parmigiano reggiano, albahaca fresca y aceite de oliva extra virgen.", m:60000, p:30000, img:"4-formaggi"},
+  {n:"Petto di Pollo", d:"Base bianca, mozzarella fior di latte, pechuga de pollo desmechada, pancetta ahumada, queso cremoso, orégano seco fresco, parmigiano reggiano y aceite de oliva extra virgen.", m:65000, p:32000, img:"petto-di-pollo"},
+  {n:"Scarpariello", d:"Puré de tomates italianos, parmigiano reggiano, mozzarella fior di latte, tomates cherry confitados con ajo, albahaca fresca y aceite de oliva extra virgen.", m:60000, p:30000},
+  {n:"Antica Marinara", d:"Puré de tomates italianos, ajo en rodajas, orégano fresco, albahaca fresca y aceite de oliva extra virgen.", m:40000, p:25000},
+  {n:"Armá tu pizza", d:"Elegís la base, bianca o puré de tomates, y cada ingrediente suma Gs. 5.000. Contanos cuáles en la nota del pedido.", m:35000, p:20000, personalizable:true}
+];
+const bebidas = [{n:"Coca-Cola 1 L", p:12000}, {n:"Coca-Cola sin azúcar 1 L", p:12000}, {n:"Coca-Cola 1,5 L", p:15000}, {n:"Coca-Cola sin azúcar 1,5 L", p:15000}];
+const items = [...pizzas.flatMap((x,k) => [{n:x.n, t:"mediana", p:x.m, tipo:"pizza", personalizable:x.personalizable, k}, {n:x.n, t:"personal", p:x.p, tipo:"pizza", personalizable:x.personalizable, k}]), ...bebidas.map(x => ({...x, tipo:"bebida"}))];
+const NP = pizzas.length * 2;  // los primeros NP ítems son pizzas (mediana y personal)
+const nom = x => x.t ? `${x.n}, ${x.t}` : x.n;
+const Tam = t => t === "mediana" ? "Mediana" : "Personal";
+const cant = items.map(() => 0);
+const ctrl = (i, nom) => `<div class="cant" data-c="${i}"><button type="button" class="menos" data-i="${i}" aria-label="Quitar ${nom}">−</button><output data-q="${i}" aria-label="Cantidad de ${nom}">0</output><button type="button" class="mas" data-i="${i}" aria-label="Agregar ${nom}">+</button></div>`;
+const tams = k => [2*k, 2*k+1].map(i => `<div class="tam" id="it${i}"><span class="tam-n">${Tam(items[i].t)}<b>${gs(items[i].p)}</b></span>${ctrl(i, nom(items[i]))}</div>`).join("");
+document.getElementById("l-pizzas").innerHTML = pizzas.map((p,k) => `<article class="prod${p.img ? "" : " sin"}" id="pz${k}"><div><h3>${p.n}</h3><p>${p.d}</p><div class="tams">${tams(k)}</div></div>${p.img ? `<div class="foto"><span class="mini"><img src="../img-marca/${p.img}.webp" alt="Pizza ${p.n}" width="224" height="224" loading="lazy"></span></div>` : ""}</article>`).join("");
+document.getElementById("l-bebidas").innerHTML = bebidas.map((b,k) => { const i = NP + k; return `<article class="prod beb" id="it${i}"><div><h3>${b.n}</h3><span class="precio">${gs(b.p)}</span></div>${ctrl(i,b.n)}</article>`; }).join("");
+document.getElementById("items").innerHTML = items.map((x,i) => `<div class="it" id="h${i}" hidden><span>${nom(x)}<small id="hp${i}"></small></span>${ctrl(i,nom(x))}</div>`).join("") + `<p class="vacio" id="h-vacio">Tu pedido está vacío. Elegí una pizza de la lista.</p>`;
+
+const form = document.getElementById("form"), hoja = document.getElementById("hoja"), carrito = document.getElementById("carrito");
+const total = () => items.reduce((s,x,i) => s + x.p * cant[i], 0);
+const hayPizzaPersonalizada = () => items.some((x, i) => x.personalizable && cant[i] > 0);
+const tipoImporte = () => hayPizzaPersonalizada() ? "Subtotal" : "Total";
+
+function detalleImporte(envio) {
+  if (hayPizzaPersonalizada()) {
+    return envio ? "Ingredientes extra y envío a confirmar" : "Ingredientes extra a confirmar";
+  }
+  return envio ? "más el envío, a confirmar" : "retirás en la cocina";
+}
+const unidades = () => cant.reduce((a,b) => a + b, 0);
+function texto(){
+  const d = new FormData(form), g = k => (d.get(k) || "").trim();
+  const lineas = items.map((x,i) => cant[i] ? `• ${cant[i]} × ${nom(x)} (${gs(x.p * cant[i])})` : "").filter(Boolean);
+  const envio = g("entrega") === "Envío a domicilio";
+  return `Hola${g("nombre") ? ", soy " + g("nombre") : ""}. Quiero pedir:\n${lineas.length ? lineas.join("\n") : "• (elegí tus pizzas)"}\n${tipoImporte()}: ${gs(total())}${envio && !hayPizzaPersonalizada() ? " + envío" : ""}${hayPizzaPersonalizada() ? "\n• " + detalleImporte(envio) : ""}\n• ${g("entrega")}${envio && g("dir") ? ": " + g("dir") : ""}\n• Pago: ${g("pago")}` + (g("nota") ? `\n• Nota: ${g("nota")}` : "") + "\n¿Me confirman el tiempo de espera?";
+}
+function pintar(){
+  items.forEach((x,i) => {
+    document.querySelectorAll(`[data-q="${i}"]`).forEach(o => o.value = cant[i]);
+    document.querySelectorAll(`[data-c="${i}"]`).forEach(c => c.classList.toggle("activa", cant[i] > 0));
+    document.getElementById("it"+i).classList.toggle("elegida", cant[i] > 0);
+    document.getElementById("h"+i).hidden = !cant[i];
+    document.getElementById("hp"+i).textContent = gs(x.p * cant[i]);
+  });
+  pizzas.forEach((p,k) => document.getElementById("pz"+k).classList.toggle("con", cant[2*k] + cant[2*k+1] > 0));
+  const n = unidades(), envio = form.entrega.value === "Envío a domicilio";
+  document.getElementById("h-vacio").hidden = n > 0;
+  document.getElementById("campo-dir").hidden = !envio;
+  document.getElementById("t-label").textContent = tipoImporte();
+  document.getElementById("t-envio").textContent = detalleImporte(envio);
+  document.getElementById("h-t").textContent = gs(total());
+  document.getElementById("c-n").textContent = n;
+  document.getElementById("c-t").textContent = gs(total());
+  carrito.classList.toggle("ver", n > 0 && !hoja.open);
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest(".cant button"); if (!b) return;
+  const i = +b.dataset.i, suma = b.classList.contains("mas"); cant[i] = Math.max(0, cant[i] + (suma ? 1 : -1));
+  document.getElementById("e-cart").textContent = ""; pintar();
+  if (suma) latir(document.getElementById("c-n"), "late"), latir(b.closest(".cant"), "pop");
+});
+// Micro-animación al agregar: se reinicia la clase para que lata aunque se toque seguido.
+function latir(el, c){ el.classList.remove(c); void el.offsetWidth; el.classList.add(c); }
+
+// Entrada con el horno: la puerta sube (0,32 s), se ve el fuego y a los 520 ms sube la carta.
+const hornoEl = document.getElementById("horno"), pagina = document.getElementById("pagina"), objeto = document.getElementById("objeto");
+const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function guardarVisita(){ try { sessionStorage.setItem("nipote-horno", "abierto"); } catch {} }
+function mostrarCarta(rapido){
+  if (hornoEl.hidden || pagina.classList.contains("sube")) return;
+  guardarVisita();
+  const fin = () => { hornoEl.hidden = true; hornoEl.classList.remove("fuera"); pagina.classList.remove("sube"); pagina.inert = false; document.getElementById("tema").content = "#FFFFFF"; document.querySelector(".tienda h1").focus({preventScroll:true}); };
+  if (quieto) { hornoEl.classList.add("fuera"); setTimeout(fin, 150); return; }
+  if (rapido) { hornoEl.classList.add("fuera"); entranProductos(60); setTimeout(fin, 150); return; }
+  objeto.setAttribute("aria-expanded", "true");
+  setTimeout(() => {
+    pagina.inert = false; pagina.classList.add("sube");
+    // La carta sube desde abajo (0,34 s) como el panel del catálogo; la portada queda quieta debajo.
+    pagina.animate([{transform:`translateY(${innerHeight}px)`}, {transform:"none"}], {duration:340, easing:"cubic-bezier(.23,1,.32,1)"}).finished.then(fin, fin);
+    entranProductos(120);
+  }, 520);
+}
+// Los primeros productos llegan escalonados una sola vez, al abrir; después la carta se usa sin esperas.
+function entranProductos(desde){
+  [document.querySelector(".tienda"), document.getElementById("tabs"), ...document.querySelectorAll("#l-pizzas .prod")].slice(0, 5).forEach((el, k) =>
+    el.animate([{opacity:0, transform:"translateY(14px)"}, {opacity:1, transform:"none"}], {duration:360, delay:desde + k * 45, easing:"cubic-bezier(.23,1,.32,1)", fill:"backwards"}));
+}
+if (document.documentElement.classList.contains("directo")) { hornoEl.hidden = true; document.getElementById("tema").content = "#FFFFFF"; }
+else { pagina.inert = true; window.scrollTo(0, 0); }
+objeto.addEventListener("click", () => mostrarCarta(false));
+document.getElementById("ver-carta").addEventListener("click", () => mostrarCarta(true));
+document.getElementById("abrir").addEventListener("click", () => { hoja.showModal(); pintar(); });
+document.getElementById("cerrar").addEventListener("click", () => hoja.close());
+hoja.addEventListener("close", () => { pintar(); (unidades() ? document.getElementById("abrir") : document.querySelector("#l-pizzas .mas")).focus(); });
+hoja.addEventListener("click", e => { if (e.target === hoja) hoja.close(); });
+form.addEventListener("input", pintar);
+form.addEventListener("change", pintar);
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  if (!cant.slice(0, NP).some(Boolean)) { document.getElementById("e-cart").textContent = "Elegí al menos una pizza."; return; }
+  const dir = document.getElementById("dir");
+  if (form.entrega.value === "Envío a domicilio" && !dir.value.trim()) { dir.setAttribute("aria-invalid","true"); document.getElementById("e-dir").textContent = "Escribí la dirección para el envío."; dir.focus(); return; }
+  dir.removeAttribute("aria-invalid"); document.getElementById("e-dir").textContent = "";
+  window.open(wa(texto()), "_blank", "noopener");
+});
+
+// Estado abierto/cerrado del horario real: jueves a domingo de 18:00 a 23:30; lunes, martes y miércoles cerrado.
+const abreDia = d => d === 0 || d >= 4;  // 0 = domingo, 4 = jueves
+function estado(dia, min){  // min = minutos desde las 00:00
+  if (abreDia(dia) && min >= 1080 && min < 1410) return [true, "Abierto · cierra 23:30"];
+  if (abreDia(dia) && min < 1080) return [false, "Abre hoy a las 18:00"];
+  return [false, abreDia((dia + 1) % 7) ? "Abre mañana a las 18:00" : "Abre el jueves a las 18:00"];
+}
+(function(){
+  const ahora = new Date(); let dia = ahora.getDay(), min = ahora.getHours() * 60 + ahora.getMinutes();
+  try { // hora de Paraguay, no la del dispositivo
+    const pt = new Intl.DateTimeFormat("en-US", {timeZone:"America/Asuncion", weekday:"short", hour:"numeric", minute:"numeric", hourCycle:"h23"}).formatToParts(ahora);
+    dia = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(pt.find(x => x.type === "weekday").value);
+    min = +pt.find(x => x.type === "hour").value * 60 + +pt.find(x => x.type === "minute").value;
+  } catch {}
+  const [abierto, txt] = estado(dia, min);
+  document.getElementById("estado").classList.add(abierto ? "ab" : "ce");
+  document.getElementById("estado-t").textContent = txt;
+})();
+
+// Pestaña activa según la sección visible.
+const tabs = [...document.querySelectorAll("#tabs a")];
+const vis = new Map();
+const io = new IntersectionObserver(es => {
+  es.forEach(e => vis.set(e.target.id, e.isIntersecting));
+  const actual = ["pizzas","bebidas","datos"].find(id => vis.get(id));
+  // Como en el catálogo: la píldora activa se rellena y la fila de pestañas la acompaña.
+  if (actual) tabs.forEach(a => { const si = a.getAttribute("href") === "#" + actual; a.setAttribute("aria-current", si); if (si) a.parentNode.scrollTo({left:a.offsetLeft - 12, behavior:quieto ? "auto" : "smooth"}); });
+}, {rootMargin:"-70px 0px -55% 0px"});
+["pizzas","bebidas","datos"].forEach(id => io.observe(document.getElementById(id)));
+new IntersectionObserver(([e]) => document.getElementById("tabs").classList.toggle("pegada", e.intersectionRatio < 1), {threshold:1, rootMargin:"-1px 0px 0px 0px"}).observe(document.getElementById("tabs"));
+// Autoprueba de los datos fijos y del total.
+console.assert(WA === "595994634252" && items[0].n === "Margherita Clásica" && items[0].p === 60000 && items[1].p === 30000, "Datos fijos de la carta");
+cant[0] = 2; cant[NP] = 1; console.assert(total() === 132000 && texto().includes("2 × Margherita Clásica, mediana (Gs. 120.000)"), "Autoprueba del pedido"); cant.fill(0);
+pintar();
+</script>
+</body>
+</html>
