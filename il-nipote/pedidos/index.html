@@ -368,6 +368,31 @@ html:not(.directo) body:has(.horno:not([hidden])){overflow:hidden}
 </dialog>
 
 <script>
+// Estadísticas del panel: se guarda qué se toca, nunca quién (sin nombre, dirección ni teléfono).
+// Si falla la red, no pasa nada: el pedido sigue igual.
+const reg = (() => {
+  const URL_EV = "https://kjzeuitjxldbtcqrwxep.supabase.co/rest/v1/nipote_eventos", CLAVE = "sb_publishable_kNHyPM1UyD8vJYAW_Z1xaQ_MIFheJaT";
+  const nuevoId = () => crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36);
+  let visitante = nuevoId(), origen = "";
+  try { visitante = localStorage.getItem("nipote-visitante") || (localStorage.setItem("nipote-visitante", visitante), visitante); } catch {}
+  try { origen = sessionStorage.getItem("nipote-origen") || ""; } catch {}
+  if (!origen) {
+    const src = new URLSearchParams(location.search).get("src"), ref = document.referrer;
+    let host = ""; try { host = new URL(ref).hostname; } catch {}
+    origen = ["ig", "estado", "qr"].includes(src) ? src : !ref || host === location.hostname ? "directo" : /instagram\./.test(host) ? "ig" : /whatsapp\./.test(host) ? "estado" : "otro";
+    try { sessionStorage.setItem("nipote-origen", origen); } catch {}
+  }
+  const dispositivo = matchMedia("(pointer: coarse)").matches ? "celu" : "compu";
+  return (tipo, detalle = null) => {
+    try {
+      fetch(URL_EV, { method: "POST", keepalive: true, headers: { apikey: CLAVE, "Content-Type": "application/json", Prefer: "return=minimal" },
+        body: JSON.stringify({ tipo, detalle: detalle && String(detalle).slice(0, 60), origen, visitante, dispositivo }) }).catch(() => {});
+    } catch {}
+  };
+})();
+reg("visita");
+</script>
+<script>
 const WA = "595994634252";
 const wa = t => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
 const gs = n => "Gs. " + n.toLocaleString("es-PY");
@@ -437,6 +462,7 @@ document.addEventListener("click", e => {
   const i = +b.dataset.i, suma = b.classList.contains("mas"); cant[i] = Math.max(0, cant[i] + (suma ? 1 : -1));
   document.getElementById("e-cart").textContent = ""; pintar();
   if (suma) latir(document.getElementById("c-n"), "late"), latir(b.closest(".cant"), "pop");
+  if (suma && items[i].tipo === "pizza") reg("agrego", items[i].n);
 });
 // Micro-animación al agregar: se reinicia la clase para que lata aunque se toque seguido.
 function latir(el, c){ el.classList.remove(c); void el.offsetWidth; el.classList.add(c); }
@@ -466,9 +492,9 @@ function entranProductos(desde){
 }
 if (document.documentElement.classList.contains("directo")) { hornoEl.hidden = true; document.getElementById("tema").content = "#FFFFFF"; }
 else { pagina.inert = true; window.scrollTo(0, 0); }
-objeto.addEventListener("click", () => mostrarCarta(false));
-document.getElementById("ver-carta").addEventListener("click", () => mostrarCarta(true));
-document.getElementById("abrir").addEventListener("click", () => { hoja.showModal(); pintar(); });
+objeto.addEventListener("click", () => { reg("abrio_horno"); mostrarCarta(false); });
+document.getElementById("ver-carta").addEventListener("click", () => { reg("ver_carta"); mostrarCarta(true); });
+document.getElementById("abrir").addEventListener("click", () => { reg("abrio_pedido"); hoja.showModal(); pintar(); });
 document.getElementById("cerrar").addEventListener("click", () => hoja.close());
 hoja.addEventListener("close", () => { pintar(); (unidades() ? document.getElementById("abrir") : document.querySelector("#l-pizzas .mas")).focus(); });
 hoja.addEventListener("click", e => { if (e.target === hoja) hoja.close(); });
@@ -484,6 +510,7 @@ form.addEventListener("submit", e => {
   const dir = document.getElementById("dir");
   if (form.entrega.value === "Envío a domicilio" && !dir.value.trim()) { dir.setAttribute("aria-invalid","true"); document.getElementById("e-dir").textContent = "Escribí la dirección para el envío."; dir.focus(); return; }
   dir.removeAttribute("aria-invalid"); document.getElementById("e-dir").textContent = "";
+  reg("envio_pedido");
   window.open(wa(texto()), "_blank", "noopener");
 });
 

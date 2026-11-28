@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="../img-marca/logo-cuadro.webp">
+<title>Estadísticas · IL Nipote Di Venini</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --sup:#F5F5F5; --linea:#E4E4E4; --txt:#030303; --txt-2:#5B5B5B; --txt-3:#767676;
+  --barra:#2B2B2B; --barra-suave:#CFCFCF; --rojo:#A71F14;
+  --f:"Figtree", ui-sans-serif, system-ui, sans-serif; --curva:cubic-bezier(.23,1,.32,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+body{background:var(--bg);color:var(--txt);font:400 16px/1.5 var(--f);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--rojo);outline-offset:2px;border-radius:8px}
+.app{max-width:600px;margin-inline:auto;padding:0 16px calc(40px + env(safe-area-inset-bottom))}
+
+.cabeza{display:flex;align-items:center;gap:12px;padding:14px 0 12px;border-bottom:1px solid var(--linea)}
+.cabeza img{width:44px;height:44px;border-radius:12px;border:1px solid var(--linea);object-fit:cover}
+.cabeza h1{font-size:17px;font-weight:700;line-height:1.2}
+.cabeza p{font-size:13px;color:var(--txt-2)}
+
+.rango{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--sup);border-radius:12px;padding:4px;margin:16px 0 6px}
+.rango button{border:0;background:transparent;border-radius:9px;min-height:44px;font-weight:600;font-size:15px;color:var(--txt-2);cursor:pointer;transition:background .2s var(--curva),color .2s var(--curva)}
+.rango button[aria-pressed="true"]{background:var(--bg);color:var(--txt);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.rango button:active{transform:scale(.97)}
+.periodo{font-size:13px;color:var(--txt-3);margin-bottom:14px;font-variant-numeric:tabular-nums}
+
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi{border:1px solid var(--linea);border-radius:16px;padding:14px 14px 12px;min-height:104px;display:flex;flex-direction:column;justify-content:space-between}
+.kpi dt{font-size:13px;color:var(--txt-2);font-weight:500}
+.kpi dd{font-size:34px;font-weight:700;line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi dd small{display:block;font-size:12px;font-weight:500;letter-spacing:0;color:var(--txt-3);margin-top:2px}
+.kpi.pedidos dd{color:var(--rojo)}
+.kpi.pizza dd{font-size:19px;line-height:1.2;letter-spacing:-.01em}
+
+.bloque{margin-top:26px}
+.bloque h2{font-size:16px;font-weight:700;margin-bottom:2px}
+.bloque .nota{font-size:13px;color:var(--txt-3);margin-bottom:12px}
+.grafico{position:relative;width:100%}
+.grafico svg{display:block;width:100%;height:auto;overflow:visible}
+.eje{font:500 11px var(--f);fill:var(--txt-3);font-variant-numeric:tabular-nums}
+.guia{stroke:var(--linea);stroke-width:1}
+.b{fill:var(--barra);transition:fill .15s;pointer-events:none}
+.b.hoy{fill:var(--rojo)}
+.toque{fill:transparent;cursor:default}
+.toque:hover + .b,.b.marcada{fill:var(--txt-2)}
+.tip{position:absolute;pointer-events:none;background:var(--txt);color:#fff;font-size:13px;font-weight:600;padding:6px 9px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-100%);opacity:0;transition:opacity .12s;font-variant-numeric:tabular-nums}
+.tip.ver{opacity:1}
+
+.filas{display:grid;gap:12px;list-style:none;padding:0}
+.fila{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:baseline}
+.fila .nom{font-size:15px;font-weight:500}
+.fila .num{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
+.fila .num span{font-weight:500;color:var(--txt-3);margin-left:4px}
+.fila .riel{grid-column:1/-1;height:8px;background:var(--sup);border-radius:4px;overflow:hidden}
+.fila .riel i{display:block;height:100%;background:var(--barra);border-radius:4px}
+
+details{border-top:1px solid var(--linea)}
+details:last-of-type{border-bottom:1px solid var(--linea)}
+.plegables{margin-top:28px}
+summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;font-weight:600;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";width:9px;height:9px;border-right:2px solid var(--txt-2);border-bottom:2px solid var(--txt-2);transform:rotate(45deg) translateY(-3px);transition:transform .2s var(--curva);flex:none;margin-right:4px}
+details[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
+.cuerpo{padding:2px 0 20px}
+.cuerpo p{font-size:15px;color:var(--txt-2);margin-bottom:10px}
+.cuerpo p:last-child{margin-bottom:0}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:7px 0;border-bottom:1px solid var(--linea)}
+th:last-child,td:last-child{text-align:right}
+th{font-weight:600;color:var(--txt-2);font-size:13px}
+
+.aviso{border:1px solid var(--linea);border-radius:16px;padding:18px 16px;margin-top:16px}
+.aviso h2{font-size:16px;margin-bottom:4px}
+.aviso p{font-size:15px;color:var(--txt-2)}
+.aviso button{margin-top:12px;min-height:44px;padding:0 18px;border:0;border-radius:12px;background:var(--txt);color:#fff;font-weight:600;cursor:pointer}
+.cargando .kpi dd,.cargando .grafico,.cargando .filas{opacity:.35}
+[hidden]{display:none!important}
+
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="app" id="app">
+  <header class="cabeza">
+    <img src="../img-marca/logo-cuadro.webp" alt="" width="44" height="44">
+    <div>
+      <h1>Estadísticas de la carta</h1>
+      <p>IL Nipote Di Venini</p>
+    </div>
+  </header>
+
+  <noscript><div class="aviso"><h2>Hace falta JavaScript</h2><p>Esta página arma los números en tu navegador. Activá JavaScript para verlos.</p></div></noscript>
+
+  <div class="rango" role="group" aria-label="Período">
+    <button type="button" data-dias="7" aria-pressed="true">7 días</button>
+    <button type="button" data-dias="30" aria-pressed="false">30 días</button>
+    <button type="button" data-dias="90" aria-pressed="false">90 días</button>
+  </div>
+  <p class="periodo" id="periodo" aria-live="polite">Cargando…</p>
+
+  <div class="aviso" id="error" hidden role="alert">
+    <h2>No pudimos traer los números</h2>
+    <p>Puede ser la conexión. Probá de nuevo en un momento.</p>
+    <button type="button" id="reintentar">Reintentar</button>
+  </div>
+
+  <div id="datos">
+    <dl class="kpis">
+      <div class="kpi"><dt>Visitas</dt><dd id="k-visitas">–<small>veces que se abrió la carta</small></dd></div>
+      <div class="kpi"><dt>Personas</dt><dd id="k-personas">–<small>celulares o compus distintas</small></dd></div>
+      <div class="kpi pedidos"><dt>Pedidos enviados</dt><dd id="k-pedidos">–<small>tocaron enviar por WhatsApp</small></dd></div>
+      <div class="kpi pizza"><dt>Pizza más pedida</dt><dd id="k-pizza">–<small>la que más se agregó</small></dd></div>
+    </dl>
+
+    <div class="aviso" id="vacio" hidden>
+      <h2>Todavía no hay visitas en estos días</h2>
+      <p>Cuando compartas el link de la carta en Instagram, en tus estados o con el QR de las cajas, acá vas a ver cuánta gente entra.</p>
+    </div>
+
+    <section class="bloque" aria-labelledby="t-dias">
+      <h2 id="t-dias">Visitas por día</h2>
+      <p class="nota">En rojo, hoy. Tocá una barra para ver el número.</p>
+      <div class="grafico" id="g-dias"><div class="tip" id="tip" aria-hidden="true"></div></div>
+    </section>
+
+    <section class="bloque" aria-labelledby="t-origen">
+      <h2 id="t-origen">De dónde llegan</h2>
+      <p class="nota">Por qué link entró cada visita.</p>
+      <ul class="filas" id="l-origen"></ul>
+    </section>
+
+    <div class="plegables">
+      <details>
+        <summary>Del ingreso al pedido</summary>
+        <div class="cuerpo"><p>Cuántas personas llegaron a cada paso. Si muchas abren el pedido pero pocas lo envían, algo las frena en el último paso.</p><ul class="filas" id="l-embudo"></ul></div>
+      </details>
+      <details>
+        <summary>Pizzas más agregadas</summary>
+        <div class="cuerpo"><ul class="filas" id="l-pizzas"></ul></div>
+      </details>
+      <details>
+        <summary>Horas con más movimiento</summary>
+        <div class="cuerpo"><p>Visitas según la hora del día, en hora de Paraguay.</p><div class="grafico" id="g-horas"></div></div>
+      </details>
+      <details>
+        <summary>Días con más movimiento</summary>
+        <div class="cuerpo"><ul class="filas" id="l-semana"></ul></div>
+      </details>
+      <details>
+        <summary>Celu o compu</summary>
+        <div class="cuerpo"><ul class="filas" id="l-disp"></ul></div>
+      </details>
+      <details>
+        <summary>Los números día por día</summary>
+        <div class="cuerpo"><table><thead><tr><th scope="col">Día</th><th scope="col">Visitas</th></tr></thead><tbody id="t-tabla"></tbody></table></div>
+      </details>
+      <details>
+        <summary>Cómo se cuentan</summary>
+        <div class="cuerpo">
+          <p>Cada vez que alguien abre la carta se cuenta una visita. Una misma persona que entra tres veces suma tres visitas y una persona.</p>
+          <p>No se guarda el nombre, la dirección ni el teléfono de nadie, ni lo que escriben en el pedido. Solo qué se tocó, a qué hora, desde qué link y si fue en celu o compu.</p>
+          <p>El pedido lo confirmás vos en WhatsApp: acá se cuenta cuando tocan «Enviar pedido», aunque después no lo manden.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</main>
+
+<script>
+const API = "https://kjzeuitjxldbtcqrwxep.supabase.co/rest/v1/rpc/nipote_resumen";
+const CLAVE = "sb_publishable_kNHyPM1UyD8vJYAW_Z1xaQ_MIFheJaT";  // clave pública: solo deja pedir el resumen
+const NOMBRE_ORIGEN = {ig:"Instagram", estado:"Estados de WhatsApp", qr:"QR de las cajas", directo:"Directo (link guardado o escrito)", otro:"Otra página"};
+const NOMBRE_DISP = {celu:"Celular", compu:"Computadora"};
+const SEMANA = ["", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+const n = x => (x || 0).toLocaleString("es-PY");
+const pct = (a, b) => b ? Math.round(a * 100 / b) + " %" : "–";
+const fecha = (iso, opc) => new Date(iso + "T12:00:00").toLocaleDateString("es-PY", opc);
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let dias = 7, ultimo = null, pedido = 0;
+try { const g = +localStorage.getItem("nipote-panel-dias"); if ([7, 30, 90].includes(g)) dias = g; } catch {}
+
+async function cargar(){
+  const mio = ++pedido;
+  document.body.classList.add("cargando"); $("error").hidden = true;
+  try {
+    const r = await fetch(API, {method:"POST", headers:{apikey:CLAVE, "Content-Type":"application/json"}, body:JSON.stringify({dias})});
+    if (!r.ok) throw new Error(r.status);
+    const d = await r.json();
+    if (mio === pedido) { ultimo = d; pintar(d); }
+  } catch {
+    if (mio === pedido) { $("error").hidden = false; $("datos").hidden = true; $("periodo").textContent = ""; }
+  } finally { if (mio === pedido) document.body.classList.remove("cargando"); }
+}
+
+// Lista de barras horizontales: nombre, número, porcentaje del total y riel.
+function filas(el, lista, total){
+  const max = Math.max(1, ...lista.map(x => x.v));
+  el.innerHTML = lista.length ? lista.map(x => `<li class="fila"><span class="nom">${esc(x.nom)}</span><span class="num">${n(x.v)}${total ? `<span>${pct(x.v, total)}</span>` : ""}</span><span class="riel" aria-hidden="true"><i style="width:${(x.v / max * 100).toFixed(1)}%"></i></span></li>`).join("")
+    : `<li class="fila"><span class="nom" style="color:var(--txt-3)">Sin datos en estos días</span></li>`;
+}
+
+// Gráfico de columnas: una sola serie, barras finas con punta redondeada, guías suaves.
+function columnas(el, datos, {alto = 180, etiquetas, destacar} = {}){
+  el.querySelector("svg")?.remove();
+  const W = Math.max(280, el.clientWidth), izq = 28, abajo = 22, H = alto;
+  const max = Math.max(1, ...datos.map(d => d.v)), paso = max <= 4 ? 1 : Math.ceil(max / 4 / (max > 40 ? 10 : 1)) * (max > 40 ? 10 : 1);
+  const tope = Math.ceil(max / paso) * paso, ancho = (W - izq) / datos.length, bw = Math.max(2, Math.min(28, ancho - Math.min(6, Math.max(2, ancho * .25)))), gap = ancho - bw;  // barras finas: como mucho 28 px
+  const y = v => (H - abajo) * (1 - v / tope);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(el.dataset.titulo || "")}">`;
+  for (let v = 0; v <= tope; v += paso) s += `<line class="guia" x1="${izq}" x2="${W}" y1="${y(v)}" y2="${y(v)}"/><text class="eje" x="0" y="${y(v) + 4}">${n(v)}</text>`;
+  datos.forEach((d, i) => {
+    const x = izq + i * ancho + gap / 2, h = (H - abajo) - y(d.v), r = Math.min(4, bw / 2, h);
+    const forma = h > 0 ? `M${x},${H - abajo}V${y(d.v) + r}Q${x},${y(d.v)} ${x + r},${y(d.v)}H${x + bw - r}Q${x + bw},${y(d.v)} ${x + bw},${y(d.v) + r}V${H - abajo}Z` : "";
+    s += `<rect class="toque" x="${izq + i * ancho}" y="0" width="${ancho}" height="${H - abajo}" data-i="${i}"/>`;
+    if (forma) s += `<path class="b${destacar && destacar(i) ? " hoy" : ""}" d="${forma}"/>`;
+    const et = etiquetas(d, i);
+    if (et) s += `<text class="eje" x="${x + bw / 2}" y="${H - 6}" text-anchor="middle">${esc(et)}</text>`;
+  });
+  el.insertAdjacentHTML("beforeend", s + "</svg>");
+  const tip = el.querySelector(".tip");
+  if (!tip) return;
+  const ver = e => {
+    const t = e.target.closest(".toque"); if (!t) return;
+    const i = +t.dataset.i, d = datos[i];
+    tip.textContent = `${d.nom}: ${n(d.v)} ${d.v === 1 ? "visita" : "visitas"}`;
+    const caja = el.getBoundingClientRect(), k = caja.width / W;
+    tip.style.left = Math.min(caja.width - 70, Math.max(70, (izq + i * ancho + ancho / 2) * k)) + "px";
+    tip.style.top = (y(d.v) * k - 6) + "px"; tip.classList.add("ver");
+  };
+  el.onpointermove = el.onpointerdown = ver;
+  el.onpointerleave = () => tip.classList.remove("ver");
+}
+
+function pintar(d){
+  $("datos").hidden = false;
+  $("periodo").textContent = `Del ${fecha(d.desde, {day:"numeric", month:"long"})} al ${fecha(d.hasta, {day:"numeric", month:"long"})}`;
+  $("k-visitas").firstChild.nodeValue = n(d.visitas);
+  $("k-personas").firstChild.nodeValue = n(d.personas);
+  $("k-pedidos").firstChild.nodeValue = n(d.pedidos_enviados);
+  $("k-pizza").firstChild.nodeValue = d.pizzas[0]?.pizza || "Todavía ninguna";
+  $("vacio").hidden = d.visitas > 0;
+
+  const porDia = d.por_dia.map(x => ({nom: fecha(x.dia, {weekday:"short", day:"numeric"}), v: x.visitas, dia: x.dia}));
+  const cada = porDia.length <= 7 ? 1 : porDia.length <= 31 ? 5 : 14;
+  $("g-dias").dataset.titulo = "Visitas por día";
+  columnas($("g-dias"), porDia, {etiquetas: (x, i) => (porDia.length - 1 - i) % cada === 0 ? (porDia.length <= 7 ? x.nom : fecha(x.dia, {day:"numeric", month:"numeric"})) : "", destacar: i => i === porDia.length - 1});
+  $("t-tabla").innerHTML = porDia.slice().reverse().map(x => `<tr><td>${esc(fecha(x.dia, {weekday:"long", day:"numeric", month:"long"}))}</td><td>${n(x.v)}</td></tr>`).join("");
+
+  filas($("l-origen"), d.origen.map(x => ({nom: NOMBRE_ORIGEN[x.origen] || x.origen, v: x.visitas})), d.visitas);
+  filas($("l-embudo"), [
+    {nom:"Entraron a la carta", v:d.personas}, {nom:"Abrieron el horno o la carta", v:d.vieron_carta},
+    {nom:"Agregaron una pizza", v:d.agregaron}, {nom:"Abrieron el pedido", v:d.abrieron_pedido}, {nom:"Tocaron enviar por WhatsApp", v:d.personas_que_enviaron}
+  ], d.personas);
+  filas($("l-pizzas"), d.pizzas.map(x => ({nom:x.pizza, v:x.veces})));
+  filas($("l-semana"), d.dias_semana.map(x => ({nom:SEMANA[x.dia], v:x.visitas})), d.visitas);
+  filas($("l-disp"), d.dispositivo.map(x => ({nom:NOMBRE_DISP[x.dispositivo] || x.dispositivo, v:x.visitas})), d.visitas);
+  $("g-horas").dataset.titulo = "Visitas por hora";
+  columnas($("g-horas"), d.horas.map(x => ({nom: x.hora + " h", v: x.visitas})), {alto:140, etiquetas: (x, i) => i % 6 === 0 ? i + " h" : ""});
+}
+
+document.querySelectorAll(".rango button").forEach(b => b.addEventListener("click", () => {
+  dias = +b.dataset.dias;
+  document.querySelectorAll(".rango button").forEach(o => o.setAttribute("aria-pressed", o === b));
+  try { localStorage.setItem("nipote-panel-dias", dias); } catch {}
+  cargar();
+}));
+document.querySelectorAll(".rango button").forEach(o => o.setAttribute("aria-pressed", +o.dataset.dias === dias));
+$("reintentar").addEventListener("click", cargar);
+// El gráfico de horas está plegado: se dibuja al abrirlo, cuando ya tiene ancho.
+document.querySelectorAll("details").forEach(x => x.addEventListener("toggle", () => x.open && ultimo && pintar(ultimo)));
+let espera = 0; addEventListener("resize", () => { clearTimeout(espera); espera = setTimeout(() => ultimo && pintar(ultimo), 150); });
+cargar();
+</script>
+</body>
+</html>
