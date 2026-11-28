@@ -45,10 +45,11 @@ button{font:inherit;color:inherit}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .chip{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 12px;border-radius:999px;background:var(--bg);font-size:14px;font-weight:600}
 .chip svg{width:15px;height:15px}
-.chip .est{color:var(--oro)}
+.chip .est{color:#F2A900}
 .estado.ab{color:var(--verde)}
-.estado.ce{color:var(--txt-2)}
-.punto{width:8px;height:8px;border-radius:50%;background:currentColor}
+.punto{width:9px;height:9px;border-radius:50%;background:#9A9A9A}
+.estado.ab .punto{background:#1FA34A;box-shadow:0 0 0 3px color-mix(in oklab,#1FA34A 22%,transparent)}
+.estado.hoy .punto{background:#E89B0C}
 .aviso{font-size:14px;color:var(--txt-2);margin-top:12px;line-height:1.45}
 
 .tabs{position:sticky;top:0;z-index:20;background:color-mix(in oklab,var(--bg) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;gap:6px;padding:10px 12px;margin-top:8px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid transparent;transition:border-color 200ms}
@@ -57,7 +58,7 @@ button{font:inherit;color:inherit}
 .tabs a{flex:none;min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;color:var(--txt-2);background:var(--card);border:1px solid var(--linea)}
 .tabs a[aria-current=true]{background:var(--txt);color:#fff;border-color:var(--txt)}
 
-.bloque{margin:12px 12px 0;scroll-margin-top:64px}
+.bloque{margin:12px 12px 0}
 .bloque h2{font-size:20px;font-weight:800;padding:8px 4px 4px}
 .bloque .sub{font-size:14px;color:var(--txt-2);padding:0 4px 10px}
 .lista{background:var(--card);border-radius:16px;overflow:hidden}
@@ -98,7 +99,20 @@ button{font:inherit;color:inherit}
 .info .ico{color:var(--txt-2);margin-top:2px}
 .info b{display:block;font-size:15px}
 .info span{font-size:14px;color:var(--txt-2)}
-.pie{font-size:13px;color:var(--txt-2);padding:16px 16px 0;line-height:1.45}
+/* Pie: como el de una app de delivery, logo, datos de contacto y la firma chica */
+.pie{margin:40px 12px 0;padding:32px 16px 20px;display:grid;justify-items:center;gap:6px;text-align:center}
+.pie-logo{width:150px;height:auto;mix-blend-mode:multiply;margin-bottom:6px}
+.pie p{font-size:14px;color:var(--txt-2);line-height:1.5}
+.pie .pie-n{font-weight:700;color:var(--txt);font-size:15px}
+.pie-acc{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:16px;width:min(100%,540px)}
+.pie-acc a{display:flex;justify-content:center;align-items:center;gap:8px;white-space:nowrap;min-height:44px;padding:0 16px;border-radius:12px;font-weight:700;font-size:15px;text-decoration:none;transition:background .2s var(--sale),transform .12s var(--sale)}
+.pie-acc a:active{transform:scale(.97)}
+.pie-wa{background:var(--verde);color:#fff}
+.pie-ig{background:var(--card);color:var(--txt);border:1px solid var(--linea)}
+@media (hover:hover){.pie-wa:hover{background:color-mix(in oklab,var(--verde) 85%,#000)}.pie-ig:hover{border-color:var(--txt-2)}}
+.firma{margin-top:22px;font-size:12px!important}
+.firma a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;color:var(--txt-2);font-weight:600;text-underline-offset:3px}
+.firma a:hover{color:var(--txt)}
 
 .carrito{position:fixed;inset:auto 0 0 0;z-index:30;padding:10px 12px calc(10px + env(safe-area-inset-bottom));pointer-events:none;visibility:hidden;transform:translateY(120%);transition:transform 280ms var(--curva),visibility 0s 280ms}
 .carrito.ver{transform:none;pointer-events:auto;visibility:visible;transition:transform 280ms var(--curva)}
@@ -138,15 +152,19 @@ legend,.campo label{font-weight:700;font-size:15px;padding:0;margin-bottom:2px}
 .op{font-weight:400;color:var(--txt-2)}
 input:not([type=radio]){font:400 16px/1.4 var(--f);color:var(--txt);background:var(--card);border:1.5px solid #8E8983;border-radius:12px;padding:12px 14px;min-height:50px;width:100%}
 input:focus{border-color:var(--txt);outline:none}
-input:focus-visible{outline:2px solid var(--rojo);outline-offset:1px}
+input:focus-visible{outline:2px solid var(--txt);outline-offset:1px}
 input[aria-invalid=true]{border-color:var(--rojo)}
 .err{font-size:14px;color:var(--rojo);font-weight:600;min-height:1em}
+.campo .err:empty{min-height:0;margin-top:-6px}
 .h-pie{border-top:1px solid var(--linea);padding:12px 18px calc(12px + env(safe-area-inset-bottom))}
 .tot{display:flex;justify-content:space-between;font-weight:800;font-size:18px;font-variant-numeric:tabular-nums;margin-bottom:10px}
 .tot small{display:block;font-weight:500;font-size:13px;color:var(--txt-2)}
 .enviar{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border:0;border-radius:14px;background:var(--rojo);color:var(--on-rojo);font-weight:700;font-size:16px;cursor:pointer;transition:transform 140ms var(--curva)}
 .enviar:hover{background:var(--rojo-h)}
 .enviar:active{transform:scale(.98)}
+/* Sin pizzas: se ve apagado, pero sigue tocable para explicar qué falta */
+.enviar[aria-disabled=true]{background:#DCDCDC;color:#3D3D3D;cursor:not-allowed}
+@media (hover:hover){.cant button:hover{background:rgba(3,3,3,.06)}.cant.activa button:hover{background:rgba(255,255,255,.16)}}
 
 /* Entrada: el horno cerrado de su catálogo (papel y negro del logo, ocre de su carta). Al abrirlo, la carta sube desde abajo. */
 .horno{--marca:#15120F;--papel:#F5F1E6;--detalle:#A8924E;
@@ -195,10 +213,10 @@ html:not(.directo) body:has(.horno:not([hidden])){overflow:hidden}
 
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.hoja[open]{animation:none}.carrito,.cant button,.enviar{transition:none}
   .puerta,.objeto svg,.ver-carta{transition:none}.objeto[aria-expanded="true"] .chispa{animation:none;opacity:1}
-  .carrito .n.late,.cant.activa.pop{animation:none}.tabs a,.prod,.cant{transition:none}}
+  .carrito .n.late,.cant.activa.pop{animation:none}.tabs a,.prod,.cant,.pie-acc a{transition:none}}
 @media (min-width:700px){
   .hoja{margin:auto;border-radius:22px;max-height:86dvh}
-  .portada img{border-radius:0 0 22px 22px}
+  .h-cab::before{display:none}
 }
 </style>
 </head>
@@ -210,7 +228,8 @@ html:not(.directo) body:has(.horno:not([hidden])){overflow:hidden}
   <symbol id="i-reloj" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 7.5V12l3 2"/></symbol>
   <symbol id="i-moto" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="16" r="3"/><circle cx="18" cy="16" r="3"/><path d="M9 16h5l3-6h-4M14 6h2l1 4M6 13l3-3h3"/></g></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
-  <symbol id="i-arriba" viewBox="0 0 16 16"><path d="M8 14V2M3 7l5-5 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="i-arriba"viewBox="0 0 16 16"><path d="M8 14V2M3 7l5-5 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
 <section class="horno" id="horno" aria-label="Entrada">
@@ -287,11 +306,20 @@ html:not(.directo) body:has(.horno:not([hidden])){overflow:hidden}
       <div class="info">
         <div><svg class="ico" aria-hidden="true"><use href="#i-reloj"/></svg><p><b>Jueves a domingo de 18:00 a 23:30</b><span>Lunes, martes y miércoles cerrado</span></p></div>
         <div><svg class="ico" aria-hidden="true"><use href="#i-moto"/></svg><p><b>Envío a domicilio o retiro</b><span>Costo del envío a confirmar</span></p></div>
-        <div><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><p><b>Cocina sobre 19 de Enero, Lambaré</b><span>Solo envíos y retiro · @veniniparaguay</span></p></div>
+        <div><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><p><b>Cocina en Villa Elisa</b><span>Solo envíos y retiro, sin salón</span></p></div>
       </div>
     </section>
-    <p class="pie">«Pizza 100 % artesanal con receta de familia italiana». El costo del envío te lo confirmamos por WhatsApp junto con el tiempo de espera.</p>
   </main>
+  <footer class="pie">
+    <img class="pie-logo" src="../img-marca/logo-negro.png" alt="IL Nipote Di Venini, pizza napoletana" width="461" height="189" loading="lazy">
+    <p class="pie-n">Jueves a domingo de 18:00 a 23:30</p>
+    <p>Villa Elisa · solo envíos y retiro. El costo del envío y la espera te los confirmamos por WhatsApp.</p>
+    <div class="pie-acc">
+      <a class="pie-wa" id="pie-wa" href="https://wa.me/595994634252" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp 0994 634 252</a>
+      <a class="pie-ig" href="https://www.instagram.com/veniniparaguay/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg>@veniniparaguay</a>
+    </div>
+    <p class="firma">Hecho por <a href="https://safagix.github.io/web/" target="_blank" rel="noopener">SafaGix</a></p>
+  </footer>
 </div>
 </div>
 
@@ -362,7 +390,7 @@ const Tam = t => t === "mediana" ? "Mediana" : "Personal";
 const cant = items.map(() => 0);
 const ctrl = (i, nom) => `<div class="cant" data-c="${i}"><button type="button" class="menos" data-i="${i}" aria-label="Quitar ${nom}">−</button><output data-q="${i}" aria-label="Cantidad de ${nom}">0</output><button type="button" class="mas" data-i="${i}" aria-label="Agregar ${nom}">+</button></div>`;
 const tams = k => [2*k, 2*k+1].map(i => `<div class="tam" id="it${i}"><span class="tam-n">${Tam(items[i].t)}<b>${gs(items[i].p)}</b></span>${ctrl(i, nom(items[i]))}</div>`).join("");
-document.getElementById("l-pizzas").innerHTML = pizzas.map((p,k) => `<article class="prod${p.img ? "" : " sin"}" id="pz${k}"><div><h3>${p.n}</h3><p>${p.d}</p><div class="tams">${tams(k)}</div></div>${p.img ? `<div class="foto"><span class="mini"><img src="../img-marca/${p.img}.webp" alt="Pizza ${p.n}" width="224" height="224" loading="lazy"></span></div>` : ""}</article>`).join("");
+document.getElementById("l-pizzas").innerHTML = pizzas.map((p,k) => `<article class="prod${p.img ? "" : " sin"}" id="pz${k}"><div><h3>${p.n}</h3><p>${p.d}</p><div class="tams">${tams(k)}</div></div>${p.img ? `<div class="foto"><span class="mini"><img src="../img-marca/${p.img}-mini.webp" alt="Pizza ${p.n}" width="336" height="336" loading="lazy" decoding="async"></span></div>` : ""}</article>`).join("");
 document.getElementById("l-bebidas").innerHTML = bebidas.map((b,k) => { const i = NP + k; return `<article class="prod beb" id="it${i}"><div><h3>${b.n}</h3><span class="precio">${gs(b.p)}</span></div>${ctrl(i,b.n)}</article>`; }).join("");
 document.getElementById("items").innerHTML = items.map((x,i) => `<div class="it" id="h${i}" hidden><span>${nom(x)}<small id="hp${i}"></small></span>${ctrl(i,nom(x))}</div>`).join("") + `<p class="vacio" id="h-vacio">Tu pedido está vacío. Elegí una pizza de la lista.</p>`;
 
@@ -402,6 +430,7 @@ function pintar(){
   document.getElementById("c-n").textContent = n;
   document.getElementById("c-t").textContent = gs(total());
   carrito.classList.toggle("ver", n > 0 && !hoja.open);
+  document.querySelector(".enviar").setAttribute("aria-disabled", !cant.slice(0, NP).some(Boolean));
 }
 document.addEventListener("click", e => {
   const b = e.target.closest(".cant button"); if (!b) return;
@@ -443,7 +472,11 @@ document.getElementById("abrir").addEventListener("click", () => { hoja.showModa
 document.getElementById("cerrar").addEventListener("click", () => hoja.close());
 hoja.addEventListener("close", () => { pintar(); (unidades() ? document.getElementById("abrir") : document.querySelector("#l-pizzas .mas")).focus(); });
 hoja.addEventListener("click", e => { if (e.target === hoja) hoja.close(); });
-form.addEventListener("input", pintar);
+form.addEventListener("input", e => {
+  // El aviso de la dirección se va apenas la escriben, no recién al reenviar.
+  if (e.target.id === "dir" && e.target.value.trim()) { e.target.removeAttribute("aria-invalid"); document.getElementById("e-dir").textContent = ""; }
+  pintar();
+});
 form.addEventListener("change", pintar);
 form.addEventListener("submit", e => {
   e.preventDefault();
@@ -456,33 +489,56 @@ form.addEventListener("submit", e => {
 
 // Estado abierto/cerrado del horario real: jueves a domingo de 18:00 a 23:30; lunes, martes y miércoles cerrado.
 const abreDia = d => d === 0 || d >= 4;  // 0 = domingo, 4 = jueves
+// Devuelve [clase del punto, texto]: ab = abierto (verde), hoy = abre hoy (ámbar), ce = cerrado.
 function estado(dia, min){  // min = minutos desde las 00:00
-  if (abreDia(dia) && min >= 1080 && min < 1410) return [true, "Abierto · cierra 23:30"];
-  if (abreDia(dia) && min < 1080) return [false, "Abre hoy a las 18:00"];
-  return [false, abreDia((dia + 1) % 7) ? "Abre mañana a las 18:00" : "Abre el jueves a las 18:00"];
+  if (abreDia(dia) && min >= 1080 && min < 1410) return ["ab", "Abierto ahora · cierra 23:30"];
+  if (abreDia(dia) && min < 1080) return ["hoy", "Abre hoy a las 18:00"];
+  // Jueves a sábado después del cierre abre al día siguiente; el resto, el jueves.
+  return ["ce", dia >= 4 && dia <= 6 ? "Abre mañana a las 18:00" : "Abre el jueves a las 18:00"];
 }
-(function(){
+function horaPY(){
   const ahora = new Date(); let dia = ahora.getDay(), min = ahora.getHours() * 60 + ahora.getMinutes();
   try { // hora de Paraguay, no la del dispositivo
     const pt = new Intl.DateTimeFormat("en-US", {timeZone:"America/Asuncion", weekday:"short", hour:"numeric", minute:"numeric", hourCycle:"h23"}).formatToParts(ahora);
     dia = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(pt.find(x => x.type === "weekday").value);
     min = +pt.find(x => x.type === "hour").value * 60 + +pt.find(x => x.type === "minute").value;
   } catch {}
-  const [abierto, txt] = estado(dia, min);
-  document.getElementById("estado").classList.add(abierto ? "ab" : "ce");
+  return [dia, min];
+}
+function pintarEstado(){
+  const [clase, txt] = estado(...horaPY()), el = document.getElementById("estado");
+  el.classList.remove("ab", "hoy", "ce"); el.classList.add(clase);
   document.getElementById("estado-t").textContent = txt;
-})();
+}
+pintarEstado(); setInterval(pintarEstado, 60000);
+console.assert(estado(5, 1200)[0] === "ab" && estado(4, 600)[1] === "Abre hoy a las 18:00" && estado(1, 1200)[1] === "Abre el jueves a las 18:00"
+  && estado(5, 1420)[1] === "Abre mañana a las 18:00" && estado(0, 1420)[1] === "Abre el jueves a las 18:00" && estado(3, 1200)[0] === "ce", "Estado del horario");
+document.getElementById("pie-wa").href = wa("Hola, quería hacer una consulta.");
 
-// Pestaña activa según la sección visible.
-const tabs = [...document.querySelectorAll("#tabs a")];
-const vis = new Map();
-const io = new IntersectionObserver(es => {
-  es.forEach(e => vis.set(e.target.id, e.isIntersecting));
-  const actual = ["pizzas","bebidas","datos"].find(id => vis.get(id));
-  // Como en el catálogo: la píldora activa se rellena y la fila de pestañas la acompaña.
-  if (actual) tabs.forEach(a => { const si = a.getAttribute("href") === "#" + actual; a.setAttribute("aria-current", si); if (si) a.parentNode.scrollTo({left:a.offsetLeft - 12, behavior:quieto ? "auto" : "smooth"}); });
-}, {rootMargin:"-70px 0px -55% 0px"});
-["pizzas","bebidas","datos"].forEach(id => io.observe(document.getElementById(id)));
+// Pestaña activa: la que se toca, y al hacer scroll la de la sección que está debajo de la barra (como PedidosYa).
+const tabs = [...document.querySelectorAll("#tabs a")], tabsEl = document.getElementById("tabs");
+const secciones = ["pizzas","bebidas","datos"].map(id => document.getElementById(id));
+let tocada = false, soltar = 0;  // mientras dura el scroll de un toque, manda la pestaña tocada
+function activar(id){
+  tabs.forEach(a => {
+    const si = a.getAttribute("href") === "#" + id;
+    if (si && a.getAttribute("aria-current") !== "true") tabsEl.scrollTo({left:a.offsetLeft - 12, behavior:quieto ? "auto" : "smooth"});
+    a.setAttribute("aria-current", si);
+  });
+}
+function seguirScroll(){
+  if (tocada) return;
+  const linea = tabsEl.getBoundingClientRect().bottom + 24;
+  const alFondo = innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
+  activar(alFondo ? "datos" : secciones.filter(s => s.getBoundingClientRect().top <= linea).pop()?.id || "pizzas");
+}
+let cuadro = 0;
+addEventListener("scroll", () => { cancelAnimationFrame(cuadro); cuadro = requestAnimationFrame(seguirScroll); }, {passive:true});
+// Al terminar el scroll del toque se libera, sin recalcular: si la sección es corta y no llega arriba, sigue marcada la tocada.
+const liberar = () => { tocada = false; clearTimeout(soltar); };
+addEventListener("scrollend", () => { if (tocada) setTimeout(liberar, 50); });
+tabs.forEach(a => a.addEventListener("click", () => { activar(a.getAttribute("href").slice(1)); tocada = true; clearTimeout(soltar); soltar = setTimeout(liberar, 1500); }));
+seguirScroll();
 new IntersectionObserver(([e]) => document.getElementById("tabs").classList.toggle("pegada", e.intersectionRatio < 1), {threshold:1, rootMargin:"-1px 0px 0px 0px"}).observe(document.getElementById("tabs"));
 // Autoprueba de los datos fijos y del total.
 console.assert(WA === "595994634252" && items[0].n === "Margherita Clásica" && items[0].p === 60000 && items[1].p === 30000, "Datos fijos de la carta");
